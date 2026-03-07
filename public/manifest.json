@@ -1,0 +1,23 @@
+{
+  "name": "DBA Dissertation Coach - World's #1 Doctorate Completion Program",
+  "short_name": "DBA Coach",
+  "description": "Expert DBA dissertation coaching with 98% success rate. Complete support from proposal to defense.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "icons": [
+    {
+      "src": "/DBACoach (2).png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/DBACoach (2).png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["education", "business", "productivity"],
+  "lang": "en-US"
+}

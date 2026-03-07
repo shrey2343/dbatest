@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1",
+    "title": "DBA Research Proposal Template",
+    "description": "A comprehensive template to structure your Doctor of Business Administration research proposal with all essential sections.",
+    "category": "Proposal Writing",
+    "format": "PDF Document (.pdf)",
+    "pages": 25,
+    "downloadUrl": "/template/DBA_Research_Proposal_Template_FINAL2.pdf",
+    "isFeatured": true,
+    "thumbnail": "/templates/proposal.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Literature Review Framework",
+    "description": "Organize your literature review systematically with this proven framework template.",
+    "category": "Literature Review",
+    "format": "PDF Document (.pdf)",
+    "pages": 15,
+    "downloadUrl": "/template/DBA_Literature_Review_Checklist (2).pdf",
+    "isFeatured": false,
+    "thumbnail": "/templates/lit-review.jpg"
+  },
+  {
+    "id": "3",
+    "title": "Research Methodology Planning Worksheet",
+    "description": "Plan your research methodology with detailed sections for qualitative and quantitative approaches.",
+    "category": "Methodology",
+    "format": "PDF Document (.pdf)",
+    "pages": 10,
+    "downloadUrl": "/template/DBA_Methodology_Decision_Tree (1).pdf",
+    "isFeatured": false,
+    "thumbnail": "/templates/methodology.jpg"
+  },
+  {
+    "id": "4",
+    "title": "Data Analysis Template",
+    "description": "Structure your data analysis chapter with this comprehensive template including tables and charts.",
+    "category": "Data Analysis",
+    "format": "PDF Document (.pdf)",
+    "pages": 20,
+    "downloadUrl": "/template/DBA_Dissertation_Template_Pack.pdf",
+    "isFeatured": false,
+    "thumbnail": "/templates/data-analysis.jpg"
+  },
+  {
+    "id": "5",
+    "title": "Dissertation Chapter Outline",
+    "description": "Complete outline for all dissertation chapters with section headings and word count guidance.",
+    "category": "Dissertation Writing",
+    "format": "PDF Document (.pdf)",
+    "pages": 8,
+    "downloadUrl": "/template/DBA_Coach_Branded_Dissertation_Template_Pack.pdf",
+    "isFeatured": false,
+    "thumbnail": "/templates/outline.jpg"
+  },
+  {
+    "id": "6",
+    "title": "Interview Questions Template",
+    "description": "Pre-formatted interview questions template for qualitative research with best practices.",
+    "category": "Research Tools",
+    "format": "PDF Document (.pdf)",
+    "pages": 12,
+    "downloadUrl": "/template/50_DBA_Research_Topics_2025.pdf",
+    "isFeatured": false,
+    "thumbnail": "/templates/interview.jpg"
+  },
+  {
+    "id": "7",
+    "title": "Research Timeline Planner",
+    "description": "Plan your entire DBA research journey with milestones, deadlines, and progress tracking.",
+    "category": "Research Tools",
+    "format": "PDF Document (.pdf)",
+    "pages": 5,
+    "downloadUrl": "/template/Doctoral_Research_Trends_2025_Quick_Guide_v2.pdf",
+    "isFeatured": false,
+    "thumbnail": "/templates/timeline.jpg"
+  },
+  {
+    "id": "8",
+    "title": "Theoretical Framework Template",
+    "description": "Build a solid theoretical foundation for your research with this structured template.",
+    "category": "Proposal Writing",
+    "format": "PDF Document (.pdf)",
+    "pages": 18,
+    "downloadUrl": "/template/DBA_Conceptual_Framework_Diagrams_DOWNLOAD.pdf",
+    "isFeatured": false,
+    "thumbnail": "/templates/framework.jpg"
+  }
+]

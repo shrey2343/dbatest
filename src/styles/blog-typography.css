@@ -1,0 +1,99 @@
+/* Global Blog Typography Enhancements */
+
+/* Ensure images are responsive and well-spaced */
+.prose img {
+  @apply w-full h-auto object-cover rounded-xl shadow-lg my-8;
+}
+
+/* Better figure handling */
+.prose figure {
+  @apply my-8;
+}
+
+.prose figcaption {
+  @apply text-center text-sm text-slate-500 mt-3 italic;
+}
+
+/* Enhanced code blocks */
+.prose pre {
+  @apply bg-slate-900 text-slate-100 rounded-lg p-6 overflow-x-auto my-8;
+}
+
+.prose code {
+  @apply bg-slate-100 text-orange-600 px-2 py-1 rounded text-sm font-mono;
+}
+
+.prose pre code {
+  @apply bg-transparent text-slate-100 p-0;
+}
+
+/* Better table styling */
+.prose table {
+  @apply w-full border-collapse my-8 shadow-md rounded-lg overflow-hidden;
+}
+
+.prose thead {
+  @apply bg-slate-100;
+}
+
+.prose th {
+  @apply px-6 py-4 text-left font-bold text-slate-900 border-b-2 border-slate-300;
+}
+
+.prose td {
+  @apply px-6 py-4 border-b border-slate-200;
+}
+
+.prose tbody tr:hover {
+  @apply bg-slate-50;
+}
+
+/* Enhanced blockquote */
+.prose blockquote {
+  @apply border-l-4 border-orange-500 bg-orange-50 pl-6 pr-6 py-4 my-8 rounded-r-lg italic;
+}
+
+.prose blockquote p {
+  @apply text-slate-700 text-lg;
+}
+
+/* Better list spacing */
+.prose ul,
+.prose ol {
+  @apply my-6 space-y-2;
+}
+
+.prose li {
+  @apply text-slate-700 leading-relaxed;
+}
+
+.prose ul > li::marker {
+  @apply text-orange-600 font-bold;
+}
+
+.prose ol > li::marker {
+  @apply text-orange-600 font-bold;
+}
+
+/* Nested lists */
+.prose ul ul,
+.prose ol ol,
+.prose ul ol,
+.prose ol ul {
+  @apply my-3 ml-6;
+}
+
+/* Horizontal rule */
+.prose hr {
+  @apply my-12 border-slate-300;
+}
+
+/* Better link styling */
+.prose a {
+  @apply text-orange-600 font-semibold no-underline hover:underline transition-all;
+}
+
+/* Not-prose utility for CTA blocks */
+.not-prose {
+  all: revert;
+}

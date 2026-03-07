@@ -1,0 +1,464 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40%, 43% {
+    transform: translateY(-10px);
+  }
+  70% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-bounce-gentle {
+  animation: bounce 2s infinite;
+}
+
+.animate-pulse-gentle {
+  animation: pulse 2s infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 1.5s ease-in-out infinite;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+/* Delay classes for staggered animations */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Custom gradient animations */
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Blog Content Styling */
+.blog-content h2 {
+  @apply text-3xl font-bold text-black mt-12 mb-6 py-4 px-6 rounded-lg;
+  background: linear-gradient(135deg, #f0b06b 0%, #ffcc99 100%);
+  box-shadow: 0 4px 6px -1px rgba(255, 153, 102, 0.2);
+}
+
+
+.blog-content h3 {
+  @apply text-xl font-bold text-gray-900 mt-8 mb-4 pl-4 border-l-4 border-orange-500;
+  background: linear-gradient(90deg, rgba(249, 115, 22, 0.1) 0%, transparent 100%);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.blog-content p {
+  @apply text-gray-700 leading-relaxed mb-4 text-base;
+}
+
+.blog-content ul {
+  @apply list-disc ml-6 space-y-2 mb-6;
+}
+
+.blog-content li {
+  @apply text-gray-700 leading-relaxed text-base;
+}
+
+.blog-content li ul {
+  @apply mt-2 mb-2;
+}
+
+.blog-content strong {
+  @apply text-blue-600 font-bold;
+}
+
+.blog-content a {
+  @apply text-blue-600;
+  text-decoration: underline;
+  font-weight: normal;
+  border-bottom: none;
+}
+
+.blog-content a:hover {
+  text-decoration: underline;
+  border-bottom: none;
+  color: #310b0b; /* optional slightly darker hover blue */
+}
+
+
+.blog-content blockquote {
+  @apply border-l-4 border-blue-600 pl-6 py-4 my-6 bg-blue-50 italic text-gray-700;
+}
+
+.blog-content code {
+  @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono text-gray-800;
+}
+
+.blog-content pre {
+  @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-6;
+}
+
+.blog-content pre code {
+  @apply bg-transparent text-gray-100 p-0;
+}
+
+.blog-content img {
+  @apply rounded-lg shadow-lg my-6 w-full;
+}
+
+/* Hide "Internal Links" and "External Links" section titles but keep the links */
+.blog-content h2:contains("Internal Links"),
+.blog-content h2:contains("External Links") {
+  display: none;
+}
+
+/* Style links in those sections differently - make them less prominent */
+.blog-content h2 + ul a,
+.blog-content h2 ~ ul a {
+  @apply text-sm text-gray-500 italic;
+  border-bottom: 1px dashed rgba(107, 114, 128, 0.3);
+}
+
+/* Table styling if needed */
+.blog-content table {
+  @apply w-full border-collapse my-6;
+}
+
+.blog-content th {
+  @apply bg-blue-600 text-white font-semibold p-3 text-left;
+}
+
+.blog-content td {
+  @apply border border-gray-300 p-3;
+}
+
+.blog-content tr:nth-child(even) {
+  @apply bg-gray-50;
+}
+
+/* Professional Blog Typography Spacing - Infobeans Style */
+.prose h2 + p,
+.prose h3 + p,
+.prose h4 + p,
+.prose h5 + p {
+  margin-top: 0 !important;
+}
+
+.prose p + h2,
+.prose ul + h2,
+.prose ol + h2,
+.prose blockquote + h2 {
+  margin-top: 5rem !important;
+  padding-top: 1rem !important;
+}
+
+.prose p + h3,
+.prose ul + h3,
+.prose ol + h3,
+.prose blockquote + h3 {
+  margin-top: 4rem !important;
+}
+
+.prose p + h4,
+.prose ul + h4,
+.prose ol + h4 {
+  margin-top: 3rem !important;
+}
+
+.prose p + h5,
+.prose ul + h5,
+.prose ol + h5 {
+  margin-top: 2.5rem !important;
+}
+
+.prose li + li {
+  margin-top: 1rem !important;
+}
+
+.prose ul ul,
+.prose ul ol,
+.prose ol ul,
+.prose ol ol {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Better list spacing */
+.prose ul > li > p,
+.prose ol > li > p {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.prose ul > li > *:first-child,
+.prose ol > li > *:first-child {
+  margin-top: 0 !important;
+}
+
+.prose ul > li > *:last-child,
+.prose ol > li > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Better paragraph spacing after lists */
+.prose ul + p,
+.prose ol + p {
+  margin-top: 1.75rem !important;
+}
+
+/* Section breaks */
+.prose h2 {
+  scroll-margin-top: 6rem;
+}
+
+.prose h3 {
+  scroll-margin-top: 5rem;
+}
+
+/* Professional numbered list styling */
+.prose ol > li::marker {
+  font-weight: 700;
+  color: #dc2626;
+}
+
+/* Smooth transitions for links */
+.prose a {
+  transition: all 0.2s ease-in-out;
+}
+
+.prose a:hover {
+  color: #b91c1c;
+}
+
+/* Better blockquote styling */
+.prose blockquote p {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  font-size: 1.125rem;
+  color: #475569;
+}
+
+/* Accessibility - Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile-first responsive utilities */
+@media (max-width: 640px) {
+  .mobile-text-center {
+    text-align: center;
+  }
+  
+  .mobile-full-width {
+    width: 100%;
+  }
+  
+  .mobile-px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .mobile-py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* Touch-friendly interactions */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Better button accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Improved text readability on mobile */
+@media (max-width: 768px) {
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Ensure minimum touch target size */
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent horizontal scroll */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Better focus indicators for keyboard navigation */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}

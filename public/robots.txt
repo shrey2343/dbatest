@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://dbacoach.com/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin/
+
+# Allow important pages
+Allow: /blog
+Allow: /templates
+Allow: /privacy-policy
+Allow: /terms-of-service
+Allow: /refund-policy
+
+# Crawl delay
+Crawl-delay: 1
