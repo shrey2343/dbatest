@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Star, Zap, Calendar, Phone, Award, Target, Users, Clock, BookOpen, FileText, BarChart3, PresentationIcon, MessageSquare, TrendingUp } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Star, Zap, Calendar, Phone, Award, Target, Users, Clock, BookOpen, FileText, BarChart3, PresentationIcon, MessageSquare, TrendingUp, Heart, Shield, Lightbulb, Rocket, Trophy, Brain, Coffee, Smile, AlertTriangle, Timer, DollarSign, GraduationCap, MapPin } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -37,8 +37,44 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
     },
   ];
 
+  const floatingTestimonials = [
+    { name: "Dr. Sarah M.", text: "Completed in 15 months!", position: "top-20 right-4" },
+    { name: "Dr. Michael R.", text: "Best decision ever!", position: "top-1/3 left-4" },
+    { name: "Dr. Jennifer L.", text: "Finally got my Dr. title!", position: "bottom-1/3 right-8" },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative">
+      {/* Floating Testimonials */}
+      {floatingTestimonials.map((testimonial, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 2 + index * 0.5, duration: 0.5 }}
+          className={`fixed ${testimonial.position} z-40 hidden lg:block`}
+        >
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{ repeat: Infinity, duration: 3, delay: index * 0.5 }}
+            className="bg-white/95 backdrop-blur-sm p-3 rounded-xl shadow-lg border border-orange-200 max-w-48"
+          >
+            <div className="flex items-center gap-2 mb-1">
+              <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
+                <CheckCircle2 className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-xs font-bold text-slate-800">{testimonial.name}</span>
+            </div>
+            <p className="text-xs text-slate-600 italic">"{testimonial.text}"</p>
+            <div className="flex mt-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      ))}
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,17 +107,27 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto text-center">
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-orange-200/30 to-pink-200/30 rounded-full -translate-y-48 translate-x-48"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-br from-blue-200/30 to-purple-200/30 rounded-full translate-y-40 -translate-x-40"></div>
+        
+        <div className="max-w-5xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-full text-sm font-bold mb-8">
+            <motion.div
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ repeat: Infinity, duration: 3 }}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-full text-sm font-bold mb-8 shadow-lg"
+            >
               <Star className="w-4 h-4" />
               MOST POPULAR PROGRAM
-            </div>
+              <Star className="w-4 h-4" />
+            </motion.div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-tight">
               Doctorate Achiever{' '}
@@ -90,25 +136,417 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
               </span>
             </h1>
             
-            <p className="text-xl sm:text-2xl text-slate-700 mb-4 leading-relaxed font-semibold">
-              A structured, ethical, and process-driven support system
-            </p>
-            
-            <p className="text-lg text-slate-600 mb-8">
-              End-to-end academic hand-holding till Dr. Completion
-            </p>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-xl border border-orange-100">
+              <p className="text-xl sm:text-2xl text-slate-700 mb-2 leading-relaxed font-semibold">
+                A structured, ethical, and process-driven support system
+              </p>
+              <p className="text-lg text-slate-600 mb-4">
+                End-to-end academic hand-holding till Dr. Completion
+              </p>
+              
+              <div className="flex flex-wrap justify-center gap-4 text-sm">
+                <div className="flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span className="font-semibold">98% Success Rate</span>
+                </div>
+                <div className="flex items-center gap-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                  <Clock className="w-4 h-4" />
+                  <span className="font-semibold">12-18 Months Average</span>
+                </div>
+                <div className="flex items-center gap-2 bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
+                  <Users className="w-4 h-4" />
+                  <span className="font-semibold">500+ Graduates</span>
+                </div>
+              </div>
+            </div>
             
             <motion.a
               href="https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl transition-all duration-300"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl transition-all duration-300 relative overflow-hidden"
             >
-              <Calendar className="w-5 h-5" />
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+              >
+                <Calendar className="w-5 h-5" />
+              </motion.div>
               Book My Free Consultation
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 translate-x-[-100%] animate-pulse"></div>
             </motion.a>
+            
+            <p className="text-sm text-slate-500 mt-4">
+              ⏰ Free 30-minute strategy session • 🔒 No obligation • ✅ Instant booking
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Success Stories Teaser Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              Join 500+ Successful Doctorate Graduates
+            </h2>
+            <p className="text-xl text-slate-600">Real people, real results, real transformations</p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              whileHover={{ scale: 1.05, y: -10 }}
+              className="bg-white p-8 rounded-3xl shadow-xl border-2 border-green-200"
+            >
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Trophy className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-green-800 mb-2">Dr. Sarah M.</h3>
+                <p className="text-green-600 font-semibold mb-4">Business Administration</p>
+                <p className="text-slate-600 italic">"Completed my DBA in 18 months while working full-time. The support was incredible!"</p>
+                <div className="flex justify-center mt-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05, y: -10 }}
+              className="bg-white p-8 rounded-3xl shadow-xl border-2 border-blue-200"
+            >
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <GraduationCap className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-blue-800 mb-2">Dr. Michael R.</h3>
+                <p className="text-blue-600 font-semibold mb-4">Healthcare Management</p>
+                <p className="text-slate-600 italic">"The statistical analysis support was a game-changer. Couldn't have done it without them!"</p>
+                <div className="flex justify-center mt-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05, y: -10 }}
+              className="bg-white p-8 rounded-3xl shadow-xl border-2 border-purple-200"
+            >
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Heart className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-purple-800 mb-2">Dr. Jennifer L.</h3>
+                <p className="text-purple-600 font-semibold mb-4">Educational Leadership</p>
+                <p className="text-slate-600 italic">"Finally achieved my dream! The team made the impossible possible."</p>
+                <div className="flex justify-center mt-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-full inline-block">
+              <span className="text-lg font-bold">98% Success Rate • Average Completion: 15 months</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Pain Points Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-red-50 to-orange-50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              Struggling With Your Doctorate? You're Not Alone
+            </h2>
+            <p className="text-xl text-slate-600">These are the most common challenges our students face before joining us</p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-red-500"
+            >
+              <div className="flex items-start gap-4">
+                <div className="bg-red-100 p-3 rounded-full">
+                  <Timer className="w-6 h-6 text-red-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Running Out of Time</h3>
+                  <p className="text-slate-600">"I've been working on this for 3 years and still nowhere near completion"</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-orange-500"
+            >
+              <div className="flex items-start gap-4">
+                <div className="bg-orange-100 p-3 rounded-full">
+                  <Brain className="w-6 h-6 text-orange-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Overwhelmed & Confused</h3>
+                  <p className="text-slate-600">"I don't know where to start or what my supervisor wants"</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-yellow-500"
+            >
+              <div className="flex items-start gap-4">
+                <div className="bg-yellow-100 p-3 rounded-full">
+                  <BarChart3 className="w-6 h-6 text-yellow-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Data Analysis Nightmare</h3>
+                  <p className="text-slate-600">"Statistics and methodology are completely beyond me"</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-purple-500"
+            >
+              <div className="flex items-start gap-4">
+                <div className="bg-purple-100 p-3 rounded-full">
+                  <Coffee className="w-6 h-6 text-purple-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Work-Life Balance</h3>
+                  <p className="text-slate-600">"Juggling full-time work, family, and research is impossible"</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-blue-500"
+            >
+              <div className="flex items-start gap-4">
+                <div className="bg-blue-100 p-3 rounded-full">
+                  <AlertTriangle className="w-6 h-6 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Quality Concerns</h3>
+                  <p className="text-slate-600">"Will my work meet university standards and pass the defense?"</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-green-500"
+            >
+              <div className="flex items-start gap-4">
+                <div className="bg-green-100 p-3 rounded-full">
+                  <DollarSign className="w-6 h-6 text-green-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Financial Pressure</h3>
+                  <p className="text-slate-600">"Every extra semester costs more money I don't have"</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white p-8 rounded-3xl shadow-xl">
+              <h3 className="text-2xl font-bold mb-4">Sound Familiar? We Have the Solution!</h3>
+              <p className="text-lg">Our Doctorate Achiever Program is specifically designed to solve these exact problems</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Transformation Promise Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              From Struggling Student to Confident Doctor
+            </h2>
+            <p className="text-xl text-slate-600">Here's exactly how we transform your doctorate journey</p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Before */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-red-600 mb-6">BEFORE: Struggling & Overwhelmed</h3>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="bg-red-50 p-4 rounded-xl border-l-4 border-red-500">
+                  <p className="text-red-800 font-medium">😰 Stressed and anxious about deadlines</p>
+                </div>
+                <div className="bg-red-50 p-4 rounded-xl border-l-4 border-red-500">
+                  <p className="text-red-800 font-medium">🤯 Confused about research methodology</p>
+                </div>
+                <div className="bg-red-50 p-4 rounded-xl border-l-4 border-red-500">
+                  <p className="text-red-800 font-medium">⏰ Years behind schedule</p>
+                </div>
+                <div className="bg-red-50 p-4 rounded-xl border-l-4 border-red-500">
+                  <p className="text-red-800 font-medium">💸 Burning through savings</p>
+                </div>
+                <div className="bg-red-50 p-4 rounded-xl border-l-4 border-red-500">
+                  <p className="text-red-800 font-medium">😔 Losing hope and motivation</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Arrow */}
+            <div className="flex justify-center">
+              <motion.div
+                animate={{ x: [0, 10, 0] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-full"
+              >
+                <Rocket className="w-12 h-12" />
+              </motion.div>
+            </div>
+            
+            {/* After */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-green-600 mb-6">AFTER: Confident & Successful</h3>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                  <p className="text-green-800 font-medium">😊 Calm and confident about progress</p>
+                </div>
+                <div className="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                  <p className="text-green-800 font-medium">🎯 Clear roadmap and expert guidance</p>
+                </div>
+                <div className="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                  <p className="text-green-800 font-medium">⚡ On track for timely completion</p>
+                </div>
+                <div className="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                  <p className="text-green-800 font-medium">💰 Saving money with faster completion</p>
+                </div>
+                <div className="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                  <p className="text-green-800 font-medium">🎓 Dr. title within reach!</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Unique Value Proposition Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-pink-50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              Why We're Different From Other Services
+            </h2>
+            <p className="text-xl text-slate-600">Not just another writing service - we're your success partners</p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              className="bg-white p-8 rounded-3xl shadow-xl border-2 border-purple-200"
+            >
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Shield className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-purple-800 mb-4">100% Ethical & Transparent</h3>
+                <p className="text-slate-600">We provide guidance and support, not ghostwriting. You remain the author of your work while we help you excel.</p>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              className="bg-white p-8 rounded-3xl shadow-xl border-2 border-blue-200"
+            >
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Users className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-blue-800 mb-4">Dedicated Success Team</h3>
+                <p className="text-slate-600">Not just one person - you get a whole team including PM, researcher, statistician, and success buddy.</p>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              className="bg-white p-8 rounded-3xl shadow-xl border-2 border-green-200"
+            >
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Target className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-green-800 mb-4">Results-Driven Process</h3>
+                <p className="text-slate-600">Structured methodology with clear milestones, deadlines, and accountability to ensure you actually finish.</p>
+              </div>
+            </motion.div>
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-8 rounded-3xl shadow-xl text-center"
+          >
+            <h3 className="text-2xl font-bold mb-4">The Bottom Line</h3>
+            <p className="text-lg">We don't just help you write - we help you SUCCEED and become the expert you're meant to be!</p>
           </motion.div>
         </div>
       </section>
@@ -658,6 +1096,161 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
         </div>
       </section>
 
+      {/* Day in the Life Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-yellow-50 to-orange-50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              A Day in Your Life as a Doctorate Achiever
+            </h2>
+            <p className="text-xl text-slate-600">See how our program fits seamlessly into your busy schedule</p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-2 border-yellow-200"
+            >
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Coffee className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-yellow-800 mb-2">Morning (15 mins)</h3>
+                <p className="text-slate-600 text-sm">Check your dedicated workspace for updates from your team. Review progress and provide feedback.</p>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-2 border-blue-200"
+            >
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-blue-800 mb-2">Lunch Break (20 mins)</h3>
+                <p className="text-slate-600 text-sm">Quick call with your Project Manager to discuss next steps. No stress, just progress updates.</p>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-2 border-green-200"
+            >
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <BookOpen className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-green-800 mb-2">Evening (30 mins)</h3>
+                <p className="text-slate-600 text-sm">Review draft chapters, add your insights, and watch your dissertation come to life.</p>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-2 border-purple-200"
+            >
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Smile className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-purple-800 mb-2">Weekend</h3>
+                <p className="text-slate-600 text-sm">Enjoy your free time! Your team works while you live your life. Check in when convenient.</p>
+              </div>
+            </motion.div>
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12 bg-gradient-to-r from-yellow-500 to-orange-500 text-white p-8 rounded-3xl shadow-xl text-center"
+          >
+            <h3 className="text-2xl font-bold mb-4">Total Time Investment: Just 1 Hour Per Day</h3>
+            <p className="text-lg">While maintaining your full-time job, family time, and personal life!</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xl text-slate-600">Get answers to the most common concerns</p>
+          </motion.div>
+          
+          <div className="space-y-6">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border border-slate-200"
+            >
+              <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-3">
+                <Lightbulb className="w-5 h-5 text-yellow-500" />
+                Is this ethical? Will my university approve?
+              </h3>
+              <p className="text-slate-600">Absolutely! We provide research guidance and support, similar to having a research mentor. You remain the author of your work, and we help you develop your ideas and improve your research skills.</p>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border border-slate-200"
+            >
+              <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-3">
+                <Timer className="w-5 h-5 text-blue-500" />
+                How long does it typically take to complete?
+              </h3>
+              <p className="text-slate-600">Most students complete their doctorate in 12-18 months with our program, compared to the typical 3-5 years. The exact timeline depends on your university requirements and your availability.</p>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border border-slate-200"
+            >
+              <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-3">
+                <DollarSign className="w-5 h-5 text-green-500" />
+                What's the investment for this program?
+              </h3>
+              <p className="text-slate-600">Investment varies based on your specific needs and timeline. Book a free consultation to get a personalized quote. Remember, completing faster saves you money on tuition and opportunity costs.</p>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border border-slate-200"
+            >
+              <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-3">
+                <Shield className="w-5 h-5 text-purple-500" />
+                What if I'm not satisfied with the work?
+              </h3>
+              <p className="text-slate-600">We offer unlimited revisions until you're completely satisfied. Our 98% success rate speaks for itself, but we stand behind our work with a satisfaction guarantee.</p>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border border-slate-200"
+            >
+              <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-3">
+                <MapPin className="w-5 h-5 text-red-500" />
+                Do you work with international students?
+              </h3>
+              <p className="text-slate-600">Yes! We work with students from universities worldwide. Our team is experienced with different academic standards and requirements across various countries and institutions.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Who Is This For Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 to-white">
         <div className="max-w-4xl mx-auto">
@@ -697,6 +1290,119 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
         </div>
       </section>
 
+      {/* Urgency Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-red-50 to-pink-50">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-8">
+              Don't Let Another Year Pass By
+            </h2>
+            
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-red-200">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-red-600 mb-2">3-5 Years</div>
+                  <p className="text-slate-600">Average time to complete without help</p>
+                </div>
+              </div>
+              
+              <div className="bg-gradient-to-br from-green-500 to-emerald-600 text-white p-6 rounded-2xl shadow-lg">
+                <div className="text-center">
+                  <div className="text-3xl font-bold mb-2">12-18 Months</div>
+                  <p>With our Doctorate Achiever Program</p>
+                </div>
+              </div>
+              
+              <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-orange-200">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-orange-600 mb-2">$50,000+</div>
+                  <p className="text-slate-600">Potential savings in tuition & opportunity cost</p>
+                </div>
+              </div>
+            </div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-gradient-to-r from-red-600 to-pink-600 text-white p-8 rounded-3xl shadow-xl"
+            >
+              <h3 className="text-2xl font-bold mb-4">Every Month You Wait Costs You:</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-left">
+                <div className="flex items-center gap-3">
+                  <AlertTriangle className="w-6 h-6 flex-shrink-0" />
+                  <span>More tuition fees and living expenses</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <AlertTriangle className="w-6 h-6 flex-shrink-0" />
+                  <span>Lost earning potential as Dr.</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <AlertTriangle className="w-6 h-6 flex-shrink-0" />
+                  <span>Increased stress and family pressure</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <AlertTriangle className="w-6 h-6 flex-shrink-0" />
+                  <span>Risk of never finishing at all</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Guarantee Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-8">
+              Our Iron-Clad Guarantee
+            </h2>
+            
+            <div className="bg-white p-8 rounded-3xl shadow-xl border-4 border-green-300">
+              <div className="flex justify-center mb-6">
+                <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
+                  <Shield className="w-12 h-12 text-white" />
+                </div>
+              </div>
+              
+              <h3 className="text-2xl font-bold text-green-800 mb-6">100% Success Guarantee</h3>
+              
+              <div className="space-y-4 text-left max-w-2xl mx-auto">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-slate-700">If you don't successfully defend your dissertation, we'll continue working with you at no additional cost</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-slate-700">If you're not satisfied with our work quality, we'll revise until you are - unlimited revisions</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-slate-700">If we don't deliver on time as promised, you get a full refund of the delay penalty</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-slate-700">100% confidentiality guaranteed - your privacy is our priority</span>
+                </div>
+              </div>
+              
+              <div className="mt-8 bg-gradient-to-r from-green-600 to-emerald-600 text-white p-6 rounded-2xl">
+                <p className="text-lg font-semibold">We're so confident in our program that we put our money where our mouth is!</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -704,37 +1410,83 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-orange-600 to-red-600 rounded-3xl p-8 sm:p-12 text-center shadow-2xl"
+            className="bg-gradient-to-br from-orange-600 to-red-600 rounded-3xl p-8 sm:p-12 text-center shadow-2xl relative overflow-hidden"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-              Ready to Finish Your Doctorate?
-            </h2>
-            <p className="text-xl text-white/90 mb-8">
-              Book a free consultation to discuss your goals and see how we can help
-            </p>
+            {/* Background decoration */}
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-600/20 to-red-600/20"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-24 -translate-x-24"></div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                href="https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center gap-3 bg-white text-orange-600 px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+            <div className="relative z-10">
+              <motion.div
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ repeat: Infinity, duration: 4 }}
+                className="inline-block mb-6"
               >
-                <Calendar className="w-5 h-5" />
-                Book Free Consultation
-              </motion.a>
+                <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto">
+                  <GraduationCap className="w-10 h-10 text-white" />
+                </div>
+              </motion.div>
               
-              <motion.a
-                href="tel:+918827272142"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
-              >
-                <Phone className="w-5 h-5" />
-                Call +91 88272 72142
-              </motion.a>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+                Ready to Become Dr. [Your Name]?
+              </h2>
+              <p className="text-xl text-white/90 mb-4">
+                Join 500+ successful graduates who transformed their lives with our program
+              </p>
+              <p className="text-lg text-white/80 mb-8">
+                Book a free consultation to discuss your goals and see how we can help you finish faster
+              </p>
+              
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-8">
+                <h3 className="text-xl font-bold text-white mb-4">What You Get in Your Free Consultation:</h3>
+                <div className="grid md:grid-cols-2 gap-3 text-left">
+                  <div className="flex items-center gap-2 text-white/90">
+                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                    <span>Personalized timeline assessment</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-white/90">
+                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                    <span>Custom strategy for your research</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-white/90">
+                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                    <span>Clear pricing and timeline</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-white/90">
+                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                    <span>No pressure, just honest advice</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.a
+                  href="https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center justify-center gap-3 bg-white text-orange-600 px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+                >
+                  <Calendar className="w-5 h-5" />
+                  Book My FREE Consultation Now
+                </motion.a>
+                
+                <motion.a
+                  href="tel:+918827272142"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+                >
+                  <Phone className="w-5 h-5" />
+                  Call +91 88272 72142
+                </motion.a>
+              </div>
+              
+              <div className="mt-8 text-white/80 text-sm">
+                <p>⏰ Limited spots available each month • 🔒 100% confidential • ✅ No obligation</p>
+              </div>
             </div>
           </motion.div>
         </div>
