@@ -412,7 +412,10 @@ if (currentPage === 'blog') {
             {/* Left Side - Services Menu and Blog */}
             <div className="hidden md:flex items-center justify-center gap-1 flex-1 min-w-0">
               <button
-                onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  setCurrentPage('doctorate-achiever-program');
+                  window.history.pushState({}, '', '/doctorate-achiever-program');
+                }}
                 className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
               >
                 Doctorate Achiever Program
@@ -511,7 +514,8 @@ if (currentPage === 'blog') {
               </button> */}
               <button
                 onClick={() => {
-                  document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
+                  setCurrentPage('doctorate-achiever-program');
+                  window.history.pushState({}, '', '/doctorate-achiever-program');
                   setMobileMenuOpen(false);
                 }}
                 className="block w-full text-left text-slate-700 hover:text-blue-600 font-medium py-2"

@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Star, Zap, Calendar, Phone, Award, Target, Users, Clock, BookOpen, FileText, BarChart3, PresentationIcon, MessageSquare, TrendingUp, Heart, Shield, Lightbulb, Rocket, Trophy, Brain, Coffee, Smile, AlertTriangle, Timer, DollarSign, GraduationCap, MapPin } from 'lucide-react';
+import { CheckCircle2, Star, Zap, Calendar, Phone, Award, Target, Users, Clock, BookOpen, FileText, BarChart3, PresentationIcon, MessageSquare, TrendingUp, Heart, Shield, Lightbulb, Rocket, Trophy, Brain, Coffee, Smile, AlertTriangle, Timer, DollarSign, GraduationCap, MapPin, Menu, X } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import PremiumFooter from './PremiumFooter';
 
 interface DoctorateAchieverProgramProps {
   onBack: () => void;
 }
 
 const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onBack }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
     window.scrollTo(0, 0);
@@ -37,72 +40,153 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
     },
   ];
 
-  const floatingTestimonials = [
-    { name: "Dr. Sarah M.", text: "Completed in 15 months!", position: "top-20 right-4" },
-    { name: "Dr. Michael R.", text: "Best decision ever!", position: "top-1/3 left-4" },
-    { name: "Dr. Jennifer L.", text: "Finally got my Dr. title!", position: "bottom-1/3 right-8" },
-  ];
+  
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative">
-      {/* Floating Testimonials */}
-      {floatingTestimonials.map((testimonial, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 2 + index * 0.5, duration: 0.5 }}
-          className={`fixed ${testimonial.position} z-40 hidden lg:block`}
-        >
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 3, delay: index * 0.5 }}
-            className="bg-white/95 backdrop-blur-sm p-3 rounded-xl shadow-lg border border-orange-200 max-w-48"
-          >
-            <div className="flex items-center gap-2 mb-1">
-              <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
-                <CheckCircle2 className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-xs font-bold text-slate-800">{testimonial.name}</span>
-            </div>
-            <p className="text-xs text-slate-600 italic">"{testimonial.text}"</p>
-            <div className="flex mt-1">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
-      ))}
-
-      {/* Navigation */}
+     
+    
+      {/* Premium Navigation - Same as Home Page */}
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <button
+          <div className="flex justify-between items-center h-14 sm:h-16">
+            {/* Logo */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center cursor-pointer"
               onClick={onBack}
-              className="flex items-center gap-2 text-slate-700 hover:text-blue-600 transition-colors"
             >
-              <ArrowLeft className="w-5 h-5" />
-              <span className="font-medium">Back to Home</span>
-            </button>
-            
-            <img 
-              src="/DBACoach (2).png" 
-              alt="DBA Coach" 
-              className="h-24 object-contain"
-            />
-            
-            <div className="flex items-center gap-4">
+              <img 
+                src="/DBACoach (2).png" 
+                alt="DBA dissertation help success stories - DBA Coach" 
+                loading="eager"
+                className="w-32 h-32 object-contain hover:scale-105 transition-transform duration-300"
+              />
+            </motion.div>
+
+            {/* Left Side - Services Menu and Blog */}
+            <div className="hidden md:flex items-center justify-center gap-1 flex-1 min-w-0">
+              <button
+                onClick={() => {
+                  // Navigate to home and scroll to services
+                  onBack();
+                  setTimeout(() => {
+                    document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
+              >
+                Doctorate Achiever Program
+              </button>
+              
+              <span className="text-slate-400">•</span>
+           
+              <button
+                onClick={() => {
+                  onBack();
+                  setTimeout(() => {
+                    window.history.pushState({}, '', '/blog');
+                    window.location.reload();
+                  }, 100);
+                }}
+                className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
+              >
+                Blog
+              </button>
+            </div>
+
+            {/* Right Side - Phone and CTA */}
+            <div className="hidden md:flex items-center space-x-4">
               <a 
                 href="tel:+918827272142"
-                className="hidden sm:flex items-center gap-2 text-slate-700 hover:text-blue-600 transition-colors"
+                className="flex items-center gap-2 text-slate-700 hover:text-blue-600 transition-colors duration-300"
               >
                 <Phone className="w-4 h-4" />
                 <span className="text-sm font-medium">+91 88272 72142</span>
               </a>
+             
+              <motion.a 
+                href="https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 shadow-lg flex items-center gap-2"
+              >
+                <Calendar className="w-4 h-4" />
+                Book My Free Consultation
+              </motion.a>
+            </div>
+
+            {/* Mobile Phone & Menu Button */}
+            <div className="md:hidden flex items-center gap-3">
+              <a 
+                href="tel:+918827272142"
+                className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
+              >
+                <Phone className="w-5 h-5" />
+                <span className="text-sm font-medium">+91 88272 72142</span>
+              </a>
+              
+              <button
+                className="p-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6 text-slate-700" />
+                ) : (
+                  <Menu className="w-6 h-6 text-slate-700" />
+                )}
+              </button>
             </div>
           </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="md:hidden pb-4 space-y-4"
+            >
+              <button
+                onClick={() => {
+                  onBack();
+                  setMobileMenuOpen(false);
+                  setTimeout(() => {
+                    window.history.pushState({}, '', '/blog');
+                    window.location.reload();
+                  }, 100);
+                }}
+                className="block w-full text-left text-slate-700 hover:text-blue-600 font-medium py-2"
+              >
+                Blog
+              </button>
+              <button
+                onClick={() => {
+                  onBack();
+                  setMobileMenuOpen(false);
+                  setTimeout(() => {
+                    document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="block w-full text-left text-slate-700 hover:text-blue-600 font-medium py-2"
+              >
+                Doctorate Achiever Program
+              </button>
+              <a 
+                href="https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold text-center"
+              >
+                Book My Free Consultation
+              </a>
+            </motion.div>
+          )}
         </div>
       </nav>
 
@@ -1491,6 +1575,9 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
           </motion.div>
         </div>
       </section>
+
+      {/* Premium Footer - Same as Home Page */}
+      <PremiumFooter />
     </div>
   );
 };
