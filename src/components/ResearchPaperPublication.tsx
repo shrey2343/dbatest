@@ -235,18 +235,18 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
             </motion.div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-tight">
-              Research Paper{' '}
+              Research Publication{' '}
               <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                Publication
+                Academy
               </span>
             </h1>
             
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-xl border border-green-100">
               <p className="text-xl sm:text-2xl text-slate-700 mb-2 leading-relaxed font-semibold">
-                12 Weeks to Transform Your Research Career
+                10 Weeks to Transform Your CV: From Zero Research Experience to Presentations at International Conferences & Impactful Publications
               </p>
               <p className="text-lg text-slate-600 mb-4">
-                From Zero Publications to High-Impact Journal Success
+                Skip years of research frustration, with our structured 10-weeks framework to publish systematic reviews from scratch, with autonomy, in a robust research community.
               </p>
               
               <div className="flex flex-wrap justify-center gap-4 text-sm">
@@ -289,7 +289,7 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
           </motion.div>
         </div>
       </section>
-      {/* Pain Points Section - Matching DoctorateAchieverProgram */}
+      {/* Why should you do systematic reviews and meta-analyses Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-red-50 to-orange-50">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -299,23 +299,23 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
             className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Struggling to Get Published? You're Not Alone
+              What is The Research Publication Academy?
             </h2>
-            <p className="text-xl text-slate-600">These are the most common challenges researchers face before joining us</p>
+            <p className="text-xl text-slate-600">The Research Publication Academy is the ultimate training program in systematic reviews and research publications. It will prepare you, regardless of background knowledge, from the ground up to develop an idea, create a project, apply the correct methodology, conduct all the statistical analysis, and write the scientific paper.</p>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-red-500"
+              className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-blue-500"
             >
               <div className="flex items-start gap-4">
-                <div className="bg-red-100 p-3 rounded-full">
-                  <Timer className="w-6 h-6 text-red-600" />
+                <div className="bg-blue-100 p-3 rounded-full">
+                  <Users className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">No Publications</h3>
-                  <p className="text-slate-600">"I've been researching for years but never published anything"</p>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Autonomy.</h3>
+                  <p className="text-slate-600">Systematic reviews and research publications allow you to establish credibility in the world. You don't need an ethics committee (institutional review board), a local professor, a statistician, or expensive software.</p>
                 </div>
               </div>
             </motion.div>
@@ -326,56 +326,11 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
             >
               <div className="flex items-start gap-4">
                 <div className="bg-orange-100 p-3 rounded-full">
-                  <Brain className="w-6 h-6 text-orange-600" />
+                  <Award className="w-6 h-6 text-orange-600" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">Methodology Confusion</h3>
-                  <p className="text-slate-600">"I don't understand systematic reviews or meta-analyses"</p>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-yellow-500"
-            >
-              <div className="flex items-start gap-4">
-                <div className="bg-yellow-100 p-3 rounded-full">
-                  <BarChart3 className="w-6 h-6 text-yellow-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">Statistical Analysis</h3>
-                  <p className="text-slate-600">"Statistics and data analysis are completely overwhelming"</p>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-purple-500"
-            >
-              <div className="flex items-start gap-4">
-                <div className="bg-purple-100 p-3 rounded-full">
-                  <FileText className="w-6 h-6 text-purple-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">Writing Struggles</h3>
-                  <p className="text-slate-600">"I don't know how to write for academic journals"</p>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-blue-500"
-            >
-              <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-3 rounded-full">
-                  <AlertTriangle className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">Rejection Fear</h3>
-                  <p className="text-slate-600">"What if my paper gets rejected by journals?"</p>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Impact.</h3>
+                  <p className="text-slate-600">Many medical students and doctors, early in their career, spend time doing case reports and case series. However, these have very little academic impact. Systematic reviews and meta-analyses, in</p>
                 </div>
               </div>
             </motion.div>
@@ -389,8 +344,8 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
                   <Clock className="w-6 h-6 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">Time Constraints</h3>
-                  <p className="text-slate-600">"I'm too busy with work to focus on research publications"</p>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">Speed.</h3>
+                  <p className="text-slate-600">In your career, you may have experienced the frustration of having a project stalled for months, the delays in collecting endless data from medical records, or long experiences in the committee for months, the delays in collecting endless</p>
                 </div>
               </div>
             </motion.div>
@@ -419,7 +374,7 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              What You Will Get in the Research Paper Publication
+              How does The Research Publication Academy work?
             </h2>
             <p className="text-xl text-slate-600">A complete system to transform you from zero publications to published researcher</p>
           </motion.div>
@@ -450,7 +405,7 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
 
           {/* Program Structure */}
           <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200">
-            <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">Complete 12-Week Program Structure</h3>
+            <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">Complete Program Structure</h3>
             
             <div className="grid md:grid-cols-2 gap-8">
               <motion.div
@@ -464,8 +419,8 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
                     <BookOpen className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold text-slate-900 mb-2">Introduction Module</h4>
-                    <p className="text-slate-600">Learn the basics of research and evidence-based methodology. Quick talks on the essentials of research initiation.</p>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">First, an introductory module</h4>
+                    <p className="text-slate-600">Here, you will learn the basics of research and evidence-based medicine. These are quick talks on the essentials of research initiation.</p>
                   </div>
                 </div>
 
@@ -474,18 +429,8 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
                     <Users className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold text-slate-900 mb-2">10 Practical Modules</h4>
-                    <p className="text-slate-600">Step-by-step guidance on conducting systematic reviews and meta-analyses, including idea generation, methodology, statistics, and writing.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-gradient-to-br from-orange-500 to-red-500 p-3 rounded-full text-white flex-shrink-0">
-                    <PresentationIcon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-slate-900 mb-2">Live Sessions</h4>
-                    <p className="text-slate-600">Interactive lectures, practical exercises, and hands-on training with real examples and case studies.</p>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">Next, you will have 10 hands-on modules</h4>
+                    <p className="text-slate-600">to guide you step-by-step, in a sequential manner, on how to conduct a systematic review and research publications. This includes everything from how to intentionally generate good ideas for your projects, rigorous research methods, statistics, scientific writing, and finally, the process of submitting your article to a journal and conference</p>
                   </div>
                 </div>
               </motion.div>
@@ -496,33 +441,28 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
                 viewport={{ once: true }}
                 className="space-y-6"
               >
-                <div className="flex items-start gap-4">
-                  <div className="bg-gradient-to-br from-purple-500 to-pink-500 p-3 rounded-full text-white flex-shrink-0">
-                    <BarChart3 className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-slate-900 mb-2">Statistical Training</h4>
-                    <p className="text-slate-600">Master the statistical analysis required for systematic reviews and meta-analyses with practical software training.</p>
-                  </div>
+                <div className="text-center">
+                  <p className="text-slate-600 mb-6">In each module, there is a theoretical and practical component. First, you will attend a lecture with a unique teaching approach – direct to the point, full of examples and with great didactics. Second, you will complete a real, literature-based exercise where you get to apply everything you learned in hands-on training. The exercises will equip you to independently conduct systematic reviews</p>
                 </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-gradient-to-br from-yellow-500 to-orange-500 p-3 rounded-full text-white flex-shrink-0">
-                    <FileText className="w-6 h-6" />
+                
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="text-center bg-slate-100 rounded-lg p-4">
+                    <div className="w-12 h-12 bg-blue-600 rounded-full mx-auto mb-2 flex items-center justify-center">
+                      <User className="w-6 h-6 text-white" />
+                    </div>
+                    <h5 className="font-bold text-slate-900">Lectures</h5>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-slate-900 mb-2">Scientific Writing</h4>
-                    <p className="text-slate-600">Learn how to write compelling manuscripts that get accepted by top-tier journals.</p>
+                  <div className="text-center bg-slate-100 rounded-lg p-4">
+                    <div className="w-12 h-12 bg-green-600 rounded-full mx-auto mb-2 flex items-center justify-center">
+                      <BookOpen className="w-6 h-6 text-white" />
+                    </div>
+                    <h5 className="font-bold text-slate-900">Exercises</h5>
                   </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-gradient-to-br from-teal-500 to-green-500 p-3 rounded-full text-white flex-shrink-0">
-                    <TrendingUp className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-slate-900 mb-2">Submission Process</h4>
-                    <p className="text-slate-600">Navigate the journal submission process, handle peer review, and maximize your publication success.</p>
+                  <div className="text-center bg-slate-100 rounded-lg p-4">
+                    <div className="w-12 h-12 bg-orange-600 rounded-full mx-auto mb-2 flex items-center justify-center">
+                      <Award className="w-6 h-6 text-white" />
+                    </div>
+                    <h5 className="font-bold text-slate-900">CPTs</h5>
                   </div>
                 </div>
               </motion.div>
@@ -632,11 +572,15 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
             viewport={{ once: true }}
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-              Ready to Transform Your Research Career?
+              Learn how to conduct impactful publications to advance your career.
             </h2>
             
-            <p className="text-xl text-white/90 mb-8">
-              Join the waitlist for our Research Paper Publication and be the first to know when enrollment opens.
+            <p className="text-xl text-white/90 mb-4">
+              Please fill out the fields below to secure your position in the waitlist. Our team will reach out to you to explain the program and complete your registration.
+            </p>
+            
+            <p className="text-lg text-orange-200 mb-8 font-medium">
+              Important: Pay close attention to your phone number and country code.
             </p>
             
             <motion.a
@@ -648,7 +592,7 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
               className="inline-flex items-center gap-3 bg-white text-green-600 px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl transition-all duration-300 hover:bg-slate-50"
             >
               <Calendar className="w-5 h-5" />
-              Join Priority Waitlist
+              APPLY FOR PRIORITY WAITLIST
             </motion.a>
             
             <p className="text-sm text-white/80 mt-4">
