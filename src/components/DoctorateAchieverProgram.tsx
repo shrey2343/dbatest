@@ -84,6 +84,21 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
               </button>
               
               <span className="text-slate-400">•</span>
+              
+              <button
+                onClick={() => {
+                  onBack();
+                  setTimeout(() => {
+                    window.history.pushState({}, '', '/research-paper-publication');
+                    window.location.reload();
+                  }, 100);
+                }}
+                className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
+              >
+                Research Publication Academy
+              </button>
+              
+              <span className="text-slate-400">•</span>
            
               <button
                 onClick={() => {
@@ -158,6 +173,31 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
                   onBack();
                   setMobileMenuOpen(false);
                   setTimeout(() => {
+                    document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="block w-full text-left text-slate-700 hover:text-blue-600 font-medium py-2"
+              >
+                Doctorate Achiever Program
+              </button>
+              <button
+                onClick={() => {
+                  onBack();
+                  setMobileMenuOpen(false);
+                  setTimeout(() => {
+                    window.history.pushState({}, '', '/research-paper-publication');
+                    window.location.reload();
+                  }, 100);
+                }}
+                className="block w-full text-left text-slate-700 hover:text-blue-600 font-medium py-2"
+              >
+                Research Publication Academy
+              </button>
+              <button
+                onClick={() => {
+                  onBack();
+                  setMobileMenuOpen(false);
+                  setTimeout(() => {
                     window.history.pushState({}, '', '/blog');
                     window.location.reload();
                   }, 100);
@@ -165,18 +205,6 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
                 className="block w-full text-left text-slate-700 hover:text-blue-600 font-medium py-2"
               >
                 Blog
-              </button>
-              <button
-                onClick={() => {
-                  onBack();
-                  setMobileMenuOpen(false);
-                  setTimeout(() => {
-                    document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
-                  }, 100);
-                }}
-                className="block w-full text-left text-slate-700 hover:text-blue-600 font-medium py-2"
-              >
-                Doctorate Achiever Program
               </button>
               <a 
                 href="https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09"

@@ -178,10 +178,6 @@ const BlogPageInfobeans: React.FC<BlogPageInfobeansProps> = ({ onBackToHome, onN
               </motion.div>
 
               <div className="hidden md:flex items-center justify-center gap-1 flex-1 min-w-0">
-               
-                
-                
-                
                 <button
                   onClick={() => {
                     onBackToHome();
@@ -192,6 +188,21 @@ const BlogPageInfobeans: React.FC<BlogPageInfobeansProps> = ({ onBackToHome, onN
                   className="text-slate-700 hover:text-orange-400 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
                 >
                   Doctorate Achiever Program
+                </button>
+                
+                <span className="text-slate-400">•</span>
+                
+                <button
+                  onClick={() => {
+                    onBackToHome();
+                    setTimeout(() => {
+                      window.history.pushState({}, '', '/research-paper-publication');
+                      window.location.reload();
+                    }, 100);
+                  }}
+                  className="text-slate-700 hover:text-orange-400 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
+                >
+                  Research Publication Academy
                 </button>
                 
                 <span className="text-slate-400">•</span>
@@ -237,11 +248,6 @@ const BlogPageInfobeans: React.FC<BlogPageInfobeansProps> = ({ onBackToHome, onN
                 exit={{ opacity: 0, y: -10 }}
                 className="md:hidden pb-4 space-y-4"
               >
-                
-                <button className="block w-full text-left text-orange-600 font-medium py-2">
-                  Blog
-                </button>
-               
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
@@ -253,6 +259,24 @@ const BlogPageInfobeans: React.FC<BlogPageInfobeansProps> = ({ onBackToHome, onN
                   className="block w-full text-left text-slate-700 hover:text-orange-600 font-medium py-2"
                 >
                  Doctorate Achiever Program
+                </button>
+                
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onBackToHome();
+                    setTimeout(() => {
+                      window.history.pushState({}, '', '/research-paper-publication');
+                      window.location.reload();
+                    }, 100);
+                  }}
+                  className="block w-full text-left text-slate-700 hover:text-orange-600 font-medium py-2"
+                >
+                  Research Publication Academy
+                </button>
+                
+                <button className="block w-full text-left text-orange-600 font-medium py-2">
+                  Blog
                 </button>
                
                 <a 
