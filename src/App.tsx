@@ -9,6 +9,7 @@ import TermsOfService from './components/TermsOfService';
 import RefundPolicy from './components/RefundPolicy';
 import Admin from './admin/Admin';
 import DoctorateAchieverProgram from './components/DoctorateAchieverProgram';
+import ResearchPaperPublication from './components/ResearchPaperPublication';
 import LeadCaptureModal from './components/LeadCaptureModal';
 import ConsultationPopup from './components/ConsultationPopup';
 import TemplatesPage from './components/TemplatesPage';
@@ -54,6 +55,8 @@ function App() {
       setCurrentPage('templates');
     } else if (path === '/doctorate-achiever-program') {
       setCurrentPage('doctorate-achiever-program');
+    } else if (path === '/research-paper-publication') {
+      setCurrentPage('research-paper-publication');
     } else if (path === '/privacy-policy') {
       setCurrentPage('privacy-policy');
     } else if (path === '/terms-of-service') {
@@ -80,6 +83,8 @@ function App() {
         setCurrentPage('templates');
       } else if (path === '/doctorate-achiever-program') {
         setCurrentPage('doctorate-achiever-program');
+      } else if (path === '/research-paper-publication') {
+        setCurrentPage('research-paper-publication');
       } else if (path === '/privacy-policy') {
         setCurrentPage('privacy-policy');
       } else if (path === '/terms-of-service') {
@@ -369,6 +374,30 @@ if (currentPage === 'blog') {
   }
 
 
+  // Handle research paper publication page
+  if (currentPage === 'research-paper-publication') {
+    return (
+      <>
+        <Helmet>
+          <title>Research Paper Publication Academy | DBA Coach</title>
+          <meta
+            name="description"
+            content="Master the complete research publication process with our structured 12-week framework. Learn systematic reviews, manuscript writing, and journal submission strategies."
+          />
+          <link rel="canonical" href="https://dbacoach.com/research-paper-publication" />
+        </Helmet>
+
+        <ResearchPaperPublication 
+          onBack={() => {
+            setCurrentPage('home');
+            window.history.pushState({}, '', '/');
+          }}
+        />
+      </>
+    );
+  }
+
+
   return (
 
     <div className="min-h-screen bg-white">
@@ -419,6 +448,18 @@ if (currentPage === 'blog') {
                 className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
               >
                 Doctorate Achiever Program
+              </button>
+              
+              <span className="text-slate-400">•</span>
+              
+              <button
+                onClick={() => {
+                  setCurrentPage('research-paper-publication');
+                  window.history.pushState({}, '', '/research-paper-publication');
+                }}
+                className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
+              >
+                Research Paper Publication
               </button>
               
               <span className="text-slate-400">•</span>
@@ -521,6 +562,16 @@ if (currentPage === 'blog') {
                 className="block w-full text-left text-slate-700 hover:text-blue-600 font-medium py-2"
               >
                 Doctorate Achiever Program
+              </button>
+              <button
+                onClick={() => {
+                  setCurrentPage('research-paper-publication');
+                  window.history.pushState({}, '', '/research-paper-publication');
+                  setMobileMenuOpen(false);
+                }}
+                className="block w-full text-left text-slate-700 hover:text-blue-600 font-medium py-2"
+              >
+                Research Paper Publication
               </button>
               {/* <button
                 onClick={() => {
