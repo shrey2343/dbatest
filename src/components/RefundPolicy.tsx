@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, RefreshCw } from 'lucide-react';
+import StandardHeader from './StandardHeader';
 
 interface RefundPolicyProps {
   onBack: () => void;
@@ -9,28 +10,24 @@ interface RefundPolicyProps {
 const RefundPolicy: React.FC<RefundPolicyProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation Bar */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <button
-              onClick={onBack}
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 font-medium transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              Back to Home
-            </button>
-            
-            <img 
-              src="/DBACoach (2).png" 
-              alt="DBA dissertation help success stories - DBA Coach" 
-              className="h-20 object-contain"
-            />
-            
-            <div className="w-24"></div>
-          </div>
-        </div>
-      </nav>
+      {/* Standard Header */}
+      <StandardHeader
+        onNavigateHome={() => {
+          onBack();
+        }}
+        onNavigateToDoctorateProgram={() => {
+          window.history.pushState({}, '', '/doctorate-achiever-program');
+          window.location.reload();
+        }}
+        onNavigateToResearchPublication={() => {
+          window.history.pushState({}, '', '/research-paper-publication');
+          window.location.reload();
+        }}
+        onNavigateToBlog={() => {
+          window.history.pushState({}, '', '/blog');
+          window.location.reload();
+        }}
+      />
 
       {/* Main Content */}
       <div className="pt-24 pb-16">

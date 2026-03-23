@@ -3,10 +3,10 @@ import guideBook from "../assets/guide-book.png";
 import graduateImg from "../assets/graduate-bg.jpg";
 
 interface GuideSectionProps {
-  setModalState: (state: { isOpen: boolean; title: string; description: string; buttonText: string }) => void;
+  onNavigateToGuideForm: () => void;
 }
 
-export default function GuideSection({ setModalState }: GuideSectionProps) {
+export default function GuideSection({ onNavigateToGuideForm }: GuideSectionProps) {
   return (
     <section className="w-full bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50 py-16 relative overflow-hidden">
       {/* Premium background elements */}
@@ -90,12 +90,7 @@ export default function GuideSection({ setModalState }: GuideSectionProps) {
             </motion.div>
 
             <motion.button
-              onClick={() => setModalState({
-                isOpen: true,
-                title: 'Download Free DBA Guide',
-                description: 'Get instant access to "5 Proven Strategies to Fast Track Your DBA Completion" - Enter your details below:',
-                buttonText: 'Download PDF Guide'
-              })}
+              onClick={onNavigateToGuideForm}
               whileHover={{ scale: 1.08, y: -2 }}
               whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 hover:from-orange-600 hover:via-red-600 hover:to-red-700 text-white px-12 py-5 rounded-2xl text-lg font-bold shadow-[0_20px_40px_-12px_rgba(251,146,60,0.4)] hover:shadow-[0_25px_50px_-12px_rgba(251,146,60,0.6)] border-2 border-orange-400/40 backdrop-blur-sm transition-all duration-500 relative overflow-hidden group"

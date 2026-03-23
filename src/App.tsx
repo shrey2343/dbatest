@@ -10,6 +10,7 @@ import RefundPolicy from './components/RefundPolicy';
 import Admin from './admin/Admin';
 import DoctorateAchieverProgram from './components/DoctorateAchieverProgram';
 import ResearchPaperPublication from './components/ResearchPaperPublication';
+import GuideFormPage from './components/GuideFormPage';
 import LeadCaptureModal from './components/LeadCaptureModal';
 import ConsultationPopup from './components/ConsultationPopup';
 import TemplatesPage from './components/TemplatesPage';
@@ -53,6 +54,8 @@ function App() {
       setCurrentPage('blog');
     } else if (path === '/templates') {
       setCurrentPage('templates');
+    } else if (path === '/guide-form') {
+      setCurrentPage('guide-form');
     } else if (path === '/doctorate-achiever-program') {
       setCurrentPage('doctorate-achiever-program');
     } else if (path === '/research-paper-publication') {
@@ -81,6 +84,8 @@ function App() {
         setCurrentPage('blog');
       } else if (path === '/templates') {
         setCurrentPage('templates');
+      } else if (path === '/guide-form') {
+        setCurrentPage('guide-form');
       } else if (path === '/doctorate-achiever-program') {
         setCurrentPage('doctorate-achiever-program');
       } else if (path === '/research-paper-publication') {
@@ -326,6 +331,29 @@ if (currentPage === 'blog') {
 }
 
 
+  // Handle guide form page
+  if (currentPage === 'guide-form') {
+    return (
+      <>
+        <Helmet>
+          <title>Download Free DBA Guide | 5 Proven Strategies – DBA Coach</title>
+          <meta
+            name="description"
+            content="Download your free guide: 5 Proven Strategies to Fast Track Your DBA Completion. Expert tips for busy professionals pursuing their doctorate."
+          />
+          <link rel="canonical" href="https://dbacoach.com/guide-form" />
+        </Helmet>
+
+        <GuideFormPage 
+          onBack={() => {
+            setCurrentPage('home');
+            window.history.pushState({}, '', '/');
+          }}
+        />
+      </>
+    );
+  }
+
   // Handle templates page
  if (currentPage === 'templates') {
   return (
@@ -447,7 +475,7 @@ if (currentPage === 'blog') {
                 }}
                 className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
               >
-                Doctorate Achiever Program
+                Dr. Achiever Program
               </button>
               
               <span className="text-slate-400">•</span>
@@ -459,7 +487,7 @@ if (currentPage === 'blog') {
                 }}
                 className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
               >
-                Research Paper Publication
+                Published Researcher Program
               </button>
               
               <span className="text-slate-400">•</span>
@@ -561,7 +589,7 @@ if (currentPage === 'blog') {
                 }}
                 className="block w-full text-left text-slate-700 hover:text-blue-600 font-medium py-2"
               >
-                Doctorate Achiever Program
+                Dr. Achiever Program
               </button>
               <button
                 onClick={() => {
@@ -571,7 +599,7 @@ if (currentPage === 'blog') {
                 }}
                 className="block w-full text-left text-slate-700 hover:text-blue-600 font-medium py-2"
               >
-                Research Paper Publication
+                Published Researcher Program
               </button>
               {/* <button
                 onClick={() => {
@@ -629,7 +657,10 @@ if (currentPage === 'blog') {
       <DBASuccessInsights />
 
       <SectionDivider />
-      <GuideSection setModalState={setModalState} />
+      <GuideSection onNavigateToGuideForm={() => {
+        setCurrentPage('guide-form');
+        window.history.pushState({}, '', '/guide-form');
+      }} />
       
       <SectionDivider />
       {/* FAQ Section */}

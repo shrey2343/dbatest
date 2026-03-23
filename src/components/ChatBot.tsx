@@ -16,6 +16,7 @@ interface LeadForm {
   lastName: string;
   email: string;
   phone: string;
+  countryCode: string;
   department: string;
 }
 
@@ -29,6 +30,7 @@ const ChatBot: React.FC = () => {
     lastName: '',
     email: '',
     phone: '',
+    countryCode: '+91',
     department: ''
   });
   const [isTyping, setIsTyping] = useState(false);
@@ -427,11 +429,43 @@ const ChatBot: React.FC = () => {
 
     // Submit to HubSpot using utility function
     try {
+      // Format phone number for HubSpot - ensure proper international format
+      let fullPhoneNumber = '';
+      if (leadForm.phone && leadForm.phone.trim() !== '') {
+        let phoneDigits = leadForm.phone.trim();
+        
+        // Remove any non-digit characters from phone input
+        phoneDigits = phoneDigits.replace(/\D/g, '');
+        
+        // Special handling for India: remove leading zero if present
+        if (leadForm.countryCode === '+91' && phoneDigits.startsWith('0')) {
+          phoneDigits = phoneDigits.substring(1);
+        }
+        
+        // Get country code digits only (remove + sign)
+        const countryCodeDigits = leadForm.countryCode.replace(/\D/g, '');
+        
+        // Combine: + followed by country code digits and phone digits
+        fullPhoneNumber = `+${countryCodeDigits}${phoneDigits}`;
+      }
+      
+      console.log('=== ChatBot Debug ===');
+      console.log({
+        name: leadForm.firstName,
+        email: leadForm.email,
+        phone: fullPhoneNumber,
+        phoneLength: fullPhoneNumber.length,
+        rawCountryCode: leadForm.countryCode,
+        rawPhone: leadForm.phone,
+        willSendToHubSpot: fullPhoneNumber !== ''
+      });
+      console.log('=====================');
+      
       const success = await submitToHubSpot({
         firstname: leadForm.firstName,
         email: leadForm.email,
-        phone: leadForm.phone,
-        message: 'Contact request from DBA Dissertation Coach Chatbot - Dr Alex'
+        phone: fullPhoneNumber,
+        message: `Contact request from DBA Dissertation Coach Chatbot - Dr Alex\n\nContact Number: ${fullPhoneNumber}\nCountry Code: ${leadForm.countryCode}\nPhone: ${leadForm.phone}`
       }, {
         pageUri: window.location.href,
         pageName: 'DBA Dissertation Coach Chatbot'
@@ -452,6 +486,7 @@ const ChatBot: React.FC = () => {
       lastName: '',
       email: '',
       phone: '',
+      countryCode: '+91',
       department: ''
     });
   };
@@ -806,13 +841,42 @@ const ChatBot: React.FC = () => {
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                   
-                  <input
-                    type="tel"
-                    placeholder="Phone with country code (e.g. +91) (required)"
-                    value={leadForm.phone}
-                    onChange={(e) => setLeadForm(prev => ({ ...prev, phone: e.target.value }))}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
+                  <div className="flex gap-2">
+                    {/* Country Code Dropdown */}
+                    <select
+                      value={leadForm.countryCode}
+                      onChange={(e) => setLeadForm(prev => ({ ...prev, countryCode: e.target.value, phone: '' }))}
+                      className="px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white min-w-[120px]"
+                    >
+                      <option value="+91">🇮🇳 +91</option>
+                      <option value="+1">🇺🇸 +1</option>
+                      <option value="+44">🇬🇧 +44</option>
+                      <option value="+61">🇦🇺 +61</option>
+                      <option value="+971">🇦🇪 +971</option>
+                      <option value="+65">🇸🇬 +65</option>
+                      <option value="+49">🇩🇪 +49</option>
+                      <option value="+33">🇫🇷 +33</option>
+                      <option value="+81">🇯🇵 +81</option>
+                      <option value="+86">🇨🇳 +86</option>
+                      <option value="+82">🇰🇷 +82</option>
+                      <option value="+60">🇲🇾 +60</option>
+                      <option value="+66">🇹🇭 +66</option>
+                      <option value="+62">🇮🇩 +62</option>
+                      <option value="+63">🇵🇭 +63</option>
+                    </select>
+                    
+                    {/* Phone Number Input */}
+                    <input
+                      type="tel"
+                      placeholder="Enter 10-digit phone number"
+                      value={leadForm.phone}
+                      onChange={(e) => {
+                        const digitsOnly = e.target.value.replace(/\D/g, '');
+                        setLeadForm(prev => ({ ...prev, phone: digitsOnly }));
+                      }}
+                      className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
                   
                   <div className="flex gap-3 pt-4">
                     <button

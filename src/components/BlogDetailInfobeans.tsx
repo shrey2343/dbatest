@@ -15,6 +15,7 @@ import { injectCTA } from '../utils/injectCTA';
 import { linkifyContent } from '../utils/linkify';
 import { StickyTemplateCTA } from './SmartCTASystem';
 import { RandomStrategyCallPopup } from './RandomStrategyCallPopup';
+import StandardHeader from './StandardHeader';
 
 interface BlogDetailInfobeansProps {
   blogSlug: string;
@@ -269,124 +270,25 @@ const BlogDetailInfobeans: React.FC<BlogDetailInfobeansProps> = ({ blogSlug, onB
       <SocialSidebar />
 
       <div className="min-h-screen bg-[#F5F1E8]">
-        {/* Navigation - Same as Home Page */}
-        <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-slate-200 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-14 sm:h-16">
-              {/* Logo - Clickable to Home */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                className="flex items-center cursor-pointer"
-                onClick={() => {
-                  window.history.pushState({}, '', '/');
-                  window.dispatchEvent(new PopStateEvent('popstate'));
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-              >
-                <img 
-                  src="/DBACoach (2).png" 
-                  alt="DBA Coach Logo" 
-                  loading="eager"
-                  className="w-32 h-32 object-contain hover:scale-105 transition-transform duration-300"
-                />
-              </motion.div>
-
-              {/* Center Services Menu - Desktop */}
-              <div className="hidden md:flex items-center justify-center gap-1 flex-1 min-w-0">
-                <button
-                  onClick={() => {
-                    window.history.pushState({}, '', '/');
-                    window.dispatchEvent(new PopStateEvent('popstate'));
-                    setTimeout(() => {
-                      document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                  }}
-                  className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
-                >
-                  Doctorate 1:1 Coaching
-                </button>
-                
-                <span className="text-slate-400">•</span>
-                
-                <button
-                  onClick={() => {
-                    window.history.pushState({}, '', '/');
-                    window.dispatchEvent(new PopStateEvent('popstate'));
-                    setTimeout(() => {
-                      document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                  }}
-                  className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
-                >
-                  DBA Achiever
-                </button>
-                
-                <span className="text-slate-400">•</span>
-                
-                <button
-                  onClick={() => {
-                    window.history.pushState({}, '', '/');
-                    window.dispatchEvent(new PopStateEvent('popstate'));
-                    setTimeout(() => {
-                      document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                  }}
-                  className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm whitespace-nowrap px-2"
-                >
-                  Time Saver Service
-                </button>
-              </div>
-
-              {/* Right Side - Home, Blog, Back, and CTA */}
-              <div className="hidden md:flex items-center space-x-4">
-                <button
-                  onClick={() => {
-                    window.history.pushState({}, '', '/');
-                    window.dispatchEvent(new PopStateEvent('popstate'));
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm"
-                >
-                  Home
-                </button>
-                
-                <button
-                  onClick={onBack}
-                  className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-300 text-sm"
-                >
-                  Blog
-                </button>
-
-                <motion.a 
-                  href="https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 shadow-lg flex items-center gap-2 text-sm"
-                >
-                  <Calendar className="w-4 h-4" />
-                  Book Free Call
-                </motion.a>
-              </div>
-
-              {/* Mobile Menu Button */}
-              <button
-                className="md:hidden p-2"
-                onClick={() => {
-                  const menu = document.getElementById('mobile-blog-menu');
-                  if (menu) {
-                    menu.classList.toggle('hidden');
-                  }
-                }}
-              >
-                <Share2 className="w-5 h-5 text-slate-700" />
-              </button>
-            </div>
-          </div>
-        </nav>
+        {/* Standard Header */}
+        <StandardHeader
+          onNavigateHome={() => {
+            window.history.pushState({}, '', '/');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onNavigateToDoctorateProgram={() => {
+            window.history.pushState({}, '', '/doctorate-achiever-program');
+            window.location.reload();
+          }}
+          onNavigateToResearchPublication={() => {
+            window.history.pushState({}, '', '/research-paper-publication');
+            window.location.reload();
+          }}
+          onNavigateToBlog={() => {
+            onBack();
+          }}
+        />
 
         {/* Hero Image with Overlapping Content Card */}
         <div className="relative">

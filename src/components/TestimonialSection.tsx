@@ -68,7 +68,7 @@ const TestimonialSection: React.FC = () => {
   };
 
   return (
-    <section className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-indigo-50 via-white to-blue-50 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 overflow-hidden">
       {/* Premium background elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/5 via-transparent to-blue-600/5"></div>
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-indigo-200/15 to-purple-200/15 rounded-full mix-blend-multiply filter blur-3xl" />
@@ -80,7 +80,7 @@ const TestimonialSection: React.FC = () => {
       <div className="absolute bottom-20 left-20 w-24 h-24 border border-blue-200/30 rounded-lg rotate-45 animate-pulse delay-1000"></div>
       <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-purple-200/40 rounded-full animate-pulse delay-500"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
         {/* Premium Section Header */}
         <div className="text-center mb-16 sm:mb-20 lg:mb-24" data-aos="fade-up">
           <motion.div

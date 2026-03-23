@@ -9,6 +9,7 @@ interface LeadCaptureModalProps {
   description: string;
   buttonText: string;
   onSuccess?: () => void; // Optional callback after successful submission
+  showStartTimeField?: boolean; // New prop for Research Paper Publication
 }
 
 const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
@@ -17,22 +18,43 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
   title,
   description,
   buttonText,
-  onSuccess
+  onSuccess,
+  showStartTimeField = false
 }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    mobile: ''
+    mobile: '',
+    countryCode: '+91', // Default to India
+    startTime: 'immediately' // Default value
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    
+    // Special handling for country code change - clear mobile number
+    if (name === 'countryCode') {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value,
+        mobile: '' // Clear mobile number when country code changes
+      }));
+    }
+    // Special handling for mobile number - only allow digits
+    else if (name === 'mobile') {
+      const digitsOnly = value.replace(/\D/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [name]: digitsOnly
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -41,11 +63,50 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
 
     try {
       // Submit to HubSpot using utility function
+      let message = `Lead from ${title}`;
+      
+      if (showStartTimeField) {
+        const startTimeLabels = {
+          'immediately': 'Immediately',
+          'within_1_month': 'Within 1 month',
+          'within_2_4_months': 'Within 2-4 months'
+        };
+        const startTimeLabel = startTimeLabels[formData.startTime as keyof typeof startTimeLabels] || formData.startTime;
+        message += ` - Start Time: ${startTimeLabel}`;
+      } else {
+        message += ' - PDF Download Request';
+      }
+      
+      // Format phone number for HubSpot - MUST include country code
+      let fullPhoneNumber = '';
+      if (formData.mobile && formData.mobile.trim() !== '') {
+        let phoneDigits = formData.mobile.trim();
+        
+        // Special handling for India: remove leading zero if present
+        if (formData.countryCode === '+91' && phoneDigits.startsWith('0')) {
+          phoneDigits = phoneDigits.substring(1);
+        }
+        
+        // Combine country code with phone number
+        fullPhoneNumber = `${formData.countryCode}${phoneDigits}`;
+      }
+      
+      console.log('=== LeadCaptureModal Debug ===');
+      console.log({
+        name: formData.name,
+        email: formData.email,
+        phone: fullPhoneNumber,
+        rawCountryCode: formData.countryCode,
+        rawPhone: formData.mobile,
+        hasPhone: formData.mobile && formData.mobile.trim() !== ''
+      });
+      console.log('==============================');
+        
       const success = await submitToHubSpot({
         firstname: formData.name,
         email: formData.email,
-        phone: formData.mobile,
-        message: `Lead from ${title} - PDF Download Request`
+        phone: fullPhoneNumber,
+        message: message
       }, {
         pageUri: window.location.href,
         pageName: title
@@ -66,8 +127,8 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
         setTimeout(() => {
           onSuccess();
         }, 1000);
-      } else {
-        // Auto-download PDF (default behavior)
+      } else if (!showStartTimeField) {
+        // Auto-download PDF (only for non-research publication pages)
         setTimeout(() => {
           const link = document.createElement('a');
           link.href = '/RMCEbook.pdf';
@@ -81,13 +142,25 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
     } catch (error) {
       console.error('Error submitting to HubSpot:', error);
       setIsSubmitting(false);
-      // Always show success and download PDF
+      // Always show success
       setIsSubmitted(true);
+      
+      // Download PDF only for non-research publication pages
+      if (!showStartTimeField) {
+        setTimeout(() => {
+          const link = document.createElement('a');
+          link.href = '/RMCEbook.pdf';
+          link.download = 'DBA-Guide-5-Proven-Strategies.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }, 1000);
+      }
     }
   };
 
   const resetForm = () => {
-    setFormData({ name: '', email: '', mobile: '' });
+    setFormData({ name: '', email: '', mobile: '', countryCode: '+91', startTime: 'immediately' });
     setIsSubmitted(false);
     onClose();
   };
@@ -153,19 +226,66 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Mobile Number *
                   </label>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <input
-                      type="tel"
-                      name="mobile"
-                      value={formData.mobile}
+                  <div className="flex gap-2">
+                    {/* Country Code Dropdown */}
+                    <select
+                      name="countryCode"
+                      value={formData.countryCode}
                       onChange={handleInputChange}
-                      required
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0072b1] focus:border-transparent"
-                      placeholder="Enter your mobile number"
-                    />
+                      className="px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0072b1] focus:border-transparent bg-white min-w-[120px]"
+                    >
+                      <option value="+91">🇮🇳 +91</option>
+                      <option value="+1">🇺🇸 +1</option>
+                      <option value="+44">🇬🇧 +44</option>
+                      <option value="+61">🇦🇺 +61</option>
+                      <option value="+971">🇦🇪 +971</option>
+                      <option value="+65">🇸🇬 +65</option>
+                      <option value="+49">🇩🇪 +49</option>
+                      <option value="+33">🇫🇷 +33</option>
+                      <option value="+81">🇯🇵 +81</option>
+                      <option value="+86">🇨🇳 +86</option>
+                      <option value="+82">🇰🇷 +82</option>
+                      <option value="+60">🇲🇾 +60</option>
+                      <option value="+66">🇹🇭 +66</option>
+                      <option value="+62">🇮🇩 +62</option>
+                      <option value="+63">🇵🇭 +63</option>
+                    </select>
+                    
+                    {/* Phone Number Input */}
+                    <div className="relative flex-1">
+                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <input
+                        type="tel"
+                        name="mobile"
+                        value={formData.mobile}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0072b1] focus:border-transparent"
+                        placeholder="Enter your 10-digit phone number"
+                      />
+                    </div>
                   </div>
                 </div>
+
+                {/* Conditional Start Time Field for Research Paper Publication */}
+                {showStartTimeField && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      When do you want to start? *
+                    </label>
+                    <select
+                      name="startTime"
+                      value={formData.startTime}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0072b1] focus:border-transparent bg-white"
+                    >
+                      <option value="immediately">Immediately</option>
+                      <option value="within_1_month">Within 1 month</option>
+                      <option value="within_2_4_months">Within 2-4 months</option>
+                    </select>
+                  </div>
+                )}
 
 
 
@@ -199,7 +319,10 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h4>
               <p className="text-gray-600 mb-6">
-                Your information has been submitted successfully. Your PDF download should start automatically. We'll contact you soon!
+                {showStartTimeField 
+                  ? "Your information has been submitted successfully. We'll contact you soon with next steps for your research publication journey!"
+                  : "Your information has been submitted successfully. Your PDF download should start automatically. We'll contact you soon!"
+                }
               </p>
               <button
                 onClick={resetForm}
