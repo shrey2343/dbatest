@@ -7,13 +7,17 @@ interface StandardHeaderProps {
   onNavigateToDoctorateProgram: () => void;
   onNavigateToResearchPublication: () => void;
   onNavigateToBlog: () => void;
+  ctaText?: string;
+  ctaLink?: string;
 }
 
 const StandardHeader: React.FC<StandardHeaderProps> = ({
   onNavigateHome,
   onNavigateToDoctorateProgram,
   onNavigateToResearchPublication,
-  onNavigateToBlog
+  onNavigateToBlog,
+  ctaText = 'Book My Free Consultation',
+  ctaLink = 'https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09'
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -79,7 +83,7 @@ const StandardHeader: React.FC<StandardHeaderProps> = ({
             </a>
            
             <motion.a 
-              href="https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09"
+              href={ctaLink}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
@@ -87,7 +91,7 @@ const StandardHeader: React.FC<StandardHeaderProps> = ({
               className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 shadow-lg flex items-center gap-2"
             >
               <Calendar className="w-4 h-4" />
-              Book My Free Consultation
+              {ctaText}
             </motion.a>
           </div>
 
@@ -150,12 +154,12 @@ const StandardHeader: React.FC<StandardHeaderProps> = ({
               Published Researcher Program
             </button>
             <a 
-              href="https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09"
+              href={ctaLink}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold text-center"
             >
-              Book My Free Consultation
+              {ctaText}
             </a>
           </motion.div>
         )}

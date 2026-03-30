@@ -85,10 +85,10 @@ const VideoTestimonialsSection: React.FC = () => {
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-10 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-4 md:py-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-10 lg:mb-12" data-aos="fade-up">
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 mb-3 sm:mb-4 lg:mb-6">
+        <div className="text-center mb-4 sm:mb-4 lg:mb-4" data-aos="fade-up">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 mb-2 sm:mb-2 lg:mb-2">
             Real Success Stories from <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">Real People</span>
           </h2>
           <p className="text-sm sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto">

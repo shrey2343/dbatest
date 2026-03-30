@@ -80,25 +80,25 @@ const TestimonialSection: React.FC = () => {
       <div className="absolute bottom-20 left-20 w-24 h-24 border border-blue-200/30 rounded-lg rotate-45 animate-pulse delay-1000"></div>
       <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-purple-200/40 rounded-full animate-pulse delay-500"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-4 lg:py-4 relative z-10">
         {/* Premium Section Header */}
-        <div className="text-center mb-16 sm:mb-20 lg:mb-24" data-aos="fade-up">
+        <div className="text-center mb-4 sm:mb-4 lg:mb-4" data-aos="fade-up">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="inline-block mb-6"
+            className="inline-block mb-2"
           >
           </motion.div>
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 mb-6 sm:mb-8 leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 mb-2 sm:mb-2 leading-tight">
            Stories That Turned Dreams{' '}
             <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
               into Results
             </span>
           </h2>
           <div className="max-w-4xl mx-auto">
-            <p className="text-xl sm:text-2xl font-medium text-slate-700 mb-4">
+            <p className="text-xl sm:text-2xl font-medium text-slate-700 mb-2">
               Don't just take our word for it.
             </p>
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed">
@@ -193,7 +193,7 @@ const TestimonialSection: React.FC = () => {
           </div>
 
           {/* Premium Navigation */}
-          <div className="flex items-center justify-between mt-12">
+          <div className="flex items-center justify-between mt-4">
             <motion.button
               onClick={() => paginate(-1)}
               whileHover={{ scale: 1.1, y: -2 }}

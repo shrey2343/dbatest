@@ -51,10 +51,12 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
           window.history.pushState({}, '', '/blog');
           window.location.reload();
         }}
+        ctaText="Start your publication journey"
+        ctaLink="https://calendly.com/researchmentorclinic1/1-1-strategy-call-to-earn-dr-fast-clone/2026-03-31T13:00:00+05:30"
       />
 
       {/* Hero Section - Matching DoctorateAchieverProgram */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <section className="pt-20 pb-4 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Background decorations */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-orange-200/30 to-pink-200/30 rounded-full -translate-y-48 translate-x-48"></div>
@@ -136,24 +138,319 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
               >
                 <Calendar className="w-5 h-5" />
               </motion.div>
-              Join the Waitlist
+              Enroll Now
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 translate-x-[-100%] animate-pulse"></div>
             </motion.button>
             
             <p className="text-sm text-slate-500 mt-4">
-              ⏰ Exclusive Early-Bird Offer Only for Waitlist • 🔒 No obligation • ✅ Limited spots available
+              ⏰ Exclusive Early-Bird Offer Only for 10 Persons • 🔒 No obligation • ✅ Limited spots available
             </p>
           </motion.div>
         </div>
       </section>
-      {/* What is DBA Coach Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-red-50 to-orange-50">
+      {/* Why Publish Research Papers Section */}
+      <section className="py-4 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-red-50 to-orange-50">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-4"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              Why Publish Research Papers?
+            </h2>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto">
+              Publishing research papers is essential for academic and professional growth. It establishes your credibility, opens doors to new opportunities, and contributes to the advancement of knowledge in your field.
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-blue-500"
+            >
+              <div className="mb-4">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">High School Students (Ivy League & Top University Aspirants)</h3>
+                <p className="text-sm text-slate-600 mb-3">Top universities don't just look at grades — they look for intellectual curiosity, research exposure, and academic initiative.</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-sm font-semibold text-slate-700">Publishing helps you:</p>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                    <span>Strengthen Ivy League and top-tier college applications</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                    <span>Demonstrate early research capability</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                    <span>Differentiate you from thousands of applicants</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                    <span>Show commitment to academic excellence</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-purple-500"
+            >
+              <div className="mb-4">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">Undergraduate, Master's & PhD Students</h3>
+                <p className="text-sm text-slate-600 mb-3">Publications are a career accelerator in academia and research-driven industries.</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-sm font-semibold text-slate-700">Publishing helps you:</p>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" />
+                    <span>Strengthen academic and research profiles</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" />
+                    <span>Improve chances of higher education, fellowships, and funding</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" />
+                    <span>Meet degree or program publication requirements</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" />
+                    <span>Build confidence and subject-matter authority</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-orange-500"
+            >
+              <div className="mb-4">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">University Professors & Academic Faculty</h3>
+                <p className="text-sm text-slate-600 mb-3">In academia, career growth depends on continuous publishing.</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-sm font-semibold text-slate-700">Publishing helps you:</p>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                    <span>Promotions and career advancement</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                    <span>Grant eligibility and research funding</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                    <span>Academic reputation and citation impact</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                    <span>Institutional performance metrics</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-green-500"
+            >
+              <div className="mb-4">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">PhD Holders & Independent Researchers</h3>
+                <p className="text-sm text-slate-600 mb-3">A doctoral degree gives you credentials — publications give you authority.</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-sm font-semibold text-slate-700">Publishing helps you:</p>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span>Establish thought leadership</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span>Strengthen professional credibility</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span>Build influence beyond the 'Dr.' title</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span>Remain active and relevant in your field</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-red-500"
+            >
+              <div className="mb-4">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">Startups, Corporates & Enterprises</h3>
+                <p className="text-sm text-slate-600 mb-3">Research publications build trust, credibility, and market authority.</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-sm font-semibold text-slate-700">Publishing helps you:</p>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span>Establish scientific and technical credibility</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span>Support product validation and innovation claims</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span>Strengthen investor, partner, and stakeholder confidence</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span>Enhance brand positioning through evidence-based research</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-indigo-500"
+            >
+              <div className="mb-4">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">EB-1 & Global Profile Builders</h3>
+                <p className="text-sm text-slate-600 mb-3">For extraordinary ability profiles, a strong publication record matters.</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-sm font-semibold text-slate-700">Publishing helps you:</p>
+                <ul className="space-y-1 text-sm text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-indigo-500 mt-0.5 flex-shrink-0" />
+                    <span>Subject-matter expertise</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-indigo-500 mt-0.5 flex-shrink-0" />
+                    <span>Original contributions to your field</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-indigo-500 mt-0.5 flex-shrink-0" />
+                    <span>Professional recognition and impact</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-indigo-500 mt-0.5 flex-shrink-0" />
+                    <span>Portfolio strength for global opportunities</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-4 text-center"
+          >
+            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-3xl shadow-xl">
+              <h3 className="text-2xl font-bold mb-4">Ready to Start Publishing?</h3>
+              <p className="text-lg mb-6">Join our Research Publication Academy and transform your career with published research papers</p>
+              <motion.button
+                onClick={() => handleCTAClick(
+                  'Research Publication Academy - Get Started',
+                  'Start your journey to becoming a published researcher with our proven 10-week system and expert mentorship.',
+                  'Get Started Now'
+                )}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 bg-white text-blue-600 px-8 py-3 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all duration-300"
+              >
+                <Calendar className="w-5 h-5" />
+                Enroll Now
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+      {/* What You Will Get Section */}
+      <section className="py-4 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-4"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              How does The Research Publication Academy work?
+            </h2>
+            <p className="text-xl text-slate-600">A complete system to transform you from zero publications to published researcher</p>
+          </motion.div>
+
+          {/* Timeline Image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex justify-center mb-4"
+          >
+            <div className="bg-white rounded-2xl shadow-2xl p-6 border border-slate-200 max-w-5xl w-full">
+              <img
+                src="/10-Week Research Paper Timeline - visual selection.png"
+                alt="10-Week Research Paper Timeline"
+                className="w-full h-auto rounded-xl"
+                loading="lazy"
+              />
+            </div>
+          </motion.div>
+
+          {/* CTA Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-4"
+          >
+            <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white p-8 rounded-3xl shadow-xl">
+              <h3 className="text-2xl font-bold mb-4">Ready to Start Your 10-Week Journey?</h3>
+              <p className="text-lg mb-6">Follow our proven timeline to transform from zero publications to published researcher</p>
+              <motion.button
+                onClick={() => handleCTAClick(
+                  'Research Publication Academy - Early Access',
+                  'Get early access to our Research Publication Academy and start your 10-week journey to becoming a published researcher.',
+                  'Get Early Access'
+                )}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 bg-white text-green-600 px-8 py-3 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all duration-300"
+              >
+                <Calendar className="w-5 h-5" />
+                Enroll Now
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+      {/* Video Testimonials Section */}
+      <VideoTestimonialsSection />
+      {/* Testimonials Section */}
+      <TestimonialSection />
+      
+      {/* What is DBA Coach Section */}
+      <section className="py-4 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-4"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
               What is DBA Coach?
@@ -210,95 +507,9 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
             </motion.div>
           </div>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
-          >
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-3xl shadow-xl">
-              <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Research Journey?</h3>
-              <p className="text-lg mb-6">Join thousands of working professionals who've successfully completed their DBA with our expert guidance</p>
-              <motion.button
-                onClick={() => handleCTAClick(
-                  'Free DBA Research Consultation',
-                  'Book your free consultation to discuss your research goals and learn how our expert mentorship can accelerate your DBA journey.',
-                  'Book Consultation'
-                )}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 bg-white text-blue-600 px-8 py-3 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all duration-300"
-              >
-                <Calendar className="w-5 h-5" />
-               Book Free Consultation
-              </motion.button>
-            </div>
-          </motion.div>
         </div>
       </section>
-      {/* What You Will Get Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              How does The Research Publication Academy work?
-            </h2>
-            <p className="text-xl text-slate-600">A complete system to transform you from zero publications to published researcher</p>
-          </motion.div>
-
-          {/* Timeline Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex justify-center mb-12"
-          >
-            <div className="bg-white rounded-2xl shadow-2xl p-6 border border-slate-200 max-w-5xl w-full">
-              <img
-                src="/10-Week Research Paper Timeline - visual selection.png"
-                alt="10-Week Research Paper Timeline"
-                className="w-full h-auto rounded-xl"
-                loading="lazy"
-              />
-            </div>
-          </motion.div>
-
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white p-8 rounded-3xl shadow-xl">
-              <h3 className="text-2xl font-bold mb-4">Ready to Start Your 10-Week Journey?</h3>
-              <p className="text-lg mb-6">Follow our proven timeline to transform from zero publications to published researcher</p>
-              <motion.button
-                onClick={() => handleCTAClick(
-                  'Research Publication Academy - Early Access',
-                  'Get early access to our Research Publication Academy and start your 10-week journey to becoming a published researcher.',
-                  'Get Early Access'
-                )}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 bg-white text-green-600 px-8 py-3 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all duration-300"
-              >
-                <Calendar className="w-5 h-5" />
-                Join the Waitlist Now
-              </motion.button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-      {/* Video Testimonials Section */}
-      <VideoTestimonialsSection />
-      {/* Testimonials Section */}
-      <TestimonialSection />
+      
       {/* Footer */}
       <PremiumFooter />
       
