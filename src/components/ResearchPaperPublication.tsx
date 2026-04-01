@@ -158,7 +158,7 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
             className="text-center mb-4"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Why Publish Research Papers?
+              Why Publish Research Papers ?
             </h2>
             <p className="text-xl text-slate-600 max-w-4xl mx-auto">
               Publishing research papers is essential for academic and professional growth. It establishes your credibility, opens doors to new opportunities, and contributes to the advancement of knowledge in your field.
