@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Calendar, Phone } from 'lucide-react';
+import { trackFacebookPixelLead } from '../utils/tracking';
 
 interface StandardHeaderProps {
   onNavigateHome: () => void;
@@ -20,6 +21,10 @@ const StandardHeader: React.FC<StandardHeaderProps> = ({
   ctaLink = 'https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09'
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleCalendlyClick = () => {
+    trackFacebookPixelLead();
+  };
 
   return (
     <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-slate-200 shadow-sm">
@@ -86,6 +91,7 @@ const StandardHeader: React.FC<StandardHeaderProps> = ({
               href={ctaLink}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleCalendlyClick}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 shadow-lg flex items-center gap-2"
@@ -157,6 +163,7 @@ const StandardHeader: React.FC<StandardHeaderProps> = ({
               href={ctaLink}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleCalendlyClick}
               className="block w-full bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold text-center"
             >
               {ctaText}

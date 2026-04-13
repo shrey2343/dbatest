@@ -8,6 +8,7 @@ import TestimonialSection from './TestimonialSection';
 import VideoTestimonialsSection from './VideoTestimonialsSection';
 import StandardHeader from './StandardHeader';
 import LeadCaptureModal from './LeadCaptureModal';
+import { trackFacebookPixelLead } from '../utils/tracking';
 
 interface ResearchPaperPublicationProps {
   onBack: () => void;
@@ -23,6 +24,10 @@ const ResearchPaperPublication: React.FC<ResearchPaperPublicationProps> = ({ onB
     AOS.init({ duration: 1000, once: true });
     window.scrollTo(0, 0);
   }, []);
+
+  const handleCalendlyClick = () => {
+    trackFacebookPixelLead();
+  };
 
   const handleCTAClick = (title: string, description: string, buttonText: string = 'Get Started Now') => {
     setModalTitle(title);

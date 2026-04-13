@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Star } from 'lucide-react';
+import { trackFacebookPixelLead } from '../utils/tracking';
 
 const ConsultationPopup: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,6 +23,7 @@ const ConsultationPopup: React.FC = () => {
   const handleClose = () => setIsVisible(false);
 
   const handleBookNow = () => {
+    trackFacebookPixelLead();
     window.open(
       'https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09',
       '_blank'

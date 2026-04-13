@@ -6,6 +6,7 @@ import 'aos/dist/aos.css';
 import PremiumFooter from './PremiumFooter';
 import TestimonialSection from './TestimonialSection';
 import StandardHeader from './StandardHeader';
+import { trackFacebookPixelLead } from '../utils/tracking';
 
 interface DoctorateAchieverProgramProps {
   onBack: () => void;
@@ -16,6 +17,10 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
     AOS.init({ duration: 1000, once: true });
     window.scrollTo(0, 0);
   }, []);
+
+  const handleCalendlyClick = () => {
+    trackFacebookPixelLead();
+  };
 
   const benefits = [
     {
@@ -123,6 +128,7 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
               href="https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleCalendlyClick}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl transition-all duration-300 relative overflow-hidden"
@@ -1020,6 +1026,7 @@ const DoctorateAchieverProgram: React.FC<DoctorateAchieverProgramProps> = ({ onB
                   href="https://calendly.com/researchmentorclinic1/doctorate-call?month=2025-09"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={handleCalendlyClick}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center justify-center gap-3 bg-white text-orange-600 px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
