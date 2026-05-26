@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, User, Bot, Phone, Mail, ChevronDown, Star } from 'lucide-react';
-import ZohoCRMForm from './ZohoCRMForm';
 
 interface Message {
   id: string;
@@ -11,11 +10,28 @@ interface Message {
   buttons?: string[];
 }
 
+interface LeadForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  countryCode: string;
+  department: string;
+}
+
 const ChatBot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [showLeadForm, setShowLeadForm] = useState(false);
+  const [leadForm, setLeadForm] = useState<LeadForm>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    countryCode: '+91',
+    department: ''
+  });
   const [isTyping, setIsTyping] = useState(false);
   const [showWelcomeButtons, setShowWelcomeButtons] = useState(true);
   const [chatEnded, setChatEnded] = useState(false);
@@ -391,19 +407,101 @@ const ChatBot: React.FC = () => {
   };
 
   const handleLeadFormSubmit = async () => {
+    if (!leadForm.firstName || !leadForm.email || !leadForm.phone) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
     // Hide lead form
     setShowLeadForm(false);
 
     // Add success message
     const successMessage: Message = {
       id: Date.now().toString(),
-      text: `Thank you! 🎉\n\nI've received your information and our DBA success team will contact you within 24 hours to discuss your personalized roadmap.\n\nIn the meantime, feel free to ask me any questions about our DBA coaching services!`,
+      text: `Thank you ${leadForm.firstName}! 🎉\n\nI've received your information and our DBA success team will contact you within 24 hours to discuss your personalized roadmap.\n\nIn the meantime, feel free to ask me any questions about our DBA coaching services!`,
       isBot: true,
       timestamp: new Date(),
       buttons: ['📞 Book Immediate Call', '🎁 Get Free Resources', '❓ Ask Questions']
     };
 
     setMessages(prev => [...prev, successMessage]);
+
+    // Submit to Zoho CRM
+    try {
+      const zohoForm = document.createElement('form');
+      zohoForm.method = 'POST';
+      zohoForm.action = 'https://crm.zoho.in/crm/WebToContactForm';
+      zohoForm.style.display = 'none';
+      
+      // Format phone number with country code
+      let fullPhone = '';
+      if (leadForm.phone && leadForm.phone.trim() !== '') {
+        const phoneDigits = leadForm.phone.replace(/\D/g, '');
+        const countryCodeDigits = leadForm.countryCode.replace(/\D/g, '');
+        fullPhone = `+${countryCodeDigits}${phoneDigits}`;
+      }
+      
+      // Add Zoho form fields
+      const fields = [
+        { name: 'xnQsjsdp', value: '8bbd35515d6a83c052b1e6576c5c88c66e03a2029e7ad697e512874bfe87ca4f' },
+        { name: 'zc_gad', value: '' },
+        { name: 'xmIwtLD', value: '8c45ff248fbf8d61c290ea098f607578e4ce3c83d44ee4b8d32f30b2782d8dd8ee8b3d33e2322c7915dad56c4b5b511d' },
+        { name: 'actionType', value: 'Q29udGFjdHM=' },
+        { name: 'returnURL', value: window.location.href },
+        { name: 'First Name', value: leadForm.firstName },
+        { name: 'Last Name', value: leadForm.lastName || leadForm.firstName },
+        { name: 'Phone', value: fullPhone },
+        { name: 'Email', value: leadForm.email },
+        { name: 'CONTACTCF2', value: leadForm.department || 'DBA Support' },
+        { name: 'CONTACTCF1', value: 'Website - ChatBot' }
+      ];
+      
+      fields.forEach(field => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = field.name;
+        input.value = field.value;
+        zohoForm.appendChild(input);
+      });
+      
+      // Create hidden iframe for submission
+      const iframe = document.createElement('iframe');
+      iframe.name = 'zoho-submit-iframe-chat';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      
+      zohoForm.target = 'zoho-submit-iframe-chat';
+      document.body.appendChild(zohoForm);
+      
+      // Submit form
+      zohoForm.submit();
+      
+      console.log('ChatBot submitted to Zoho:', {
+        firstName: leadForm.firstName,
+        lastName: leadForm.lastName,
+        phone: fullPhone,
+        email: leadForm.email
+      });
+      
+      // Clean up after delay
+      setTimeout(() => {
+        if (document.body.contains(zohoForm)) document.body.removeChild(zohoForm);
+        if (document.body.contains(iframe)) document.body.removeChild(iframe);
+      }, 3000);
+      
+    } catch (error) {
+      console.error('Error submitting to Zoho:', error);
+    }
+    
+    // Reset form
+    setLeadForm({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      countryCode: '+91',
+      department: ''
+    });
   };
 
   return (
@@ -734,13 +832,64 @@ const ChatBot: React.FC = () => {
                   </button>
                 </div>
 
-                <div className="p-4 space-y-4 overflow-y-auto" style={{ maxHeight: 'calc(600px - 80px)' }}>
+                <div className="p-4 space-y-4">
                   <div className="text-center mb-4">
                     <h4 className="text-lg font-semibold text-gray-800 mb-2">Get Your Free DBA Dissertation Strategy Call</h4>
                     <p className="text-sm text-gray-600">Fill in your details below and our team will contact you within 24 hours</p>
                   </div>
                   
-                  <ZohoCRMForm />
+                  <input
+                    type="text"
+                    placeholder="Enter your full name"
+                    value={leadForm.firstName}
+                    onChange={(e) => setLeadForm(prev => ({ ...prev, firstName: e.target.value }))}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                  
+                  <input
+                    type="email"
+                    placeholder="Enter your email address (required)"
+                    value={leadForm.email}
+                    onChange={(e) => setLeadForm(prev => ({ ...prev, email: e.target.value }))}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                  
+                  <div className="flex gap-2">
+                    {/* Country Code Dropdown */}
+                    <select
+                      value={leadForm.countryCode}
+                      onChange={(e) => setLeadForm(prev => ({ ...prev, countryCode: e.target.value, phone: '' }))}
+                      className="px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white min-w-[120px]"
+                    >
+                      <option value="+91">🇮🇳 +91</option>
+                      <option value="+1">🇺🇸 +1</option>
+                      <option value="+44">🇬🇧 +44</option>
+                      <option value="+61">🇦🇺 +61</option>
+                      <option value="+971">🇦🇪 +971</option>
+                      <option value="+65">🇸🇬 +65</option>
+                      <option value="+49">🇩🇪 +49</option>
+                      <option value="+33">🇫🇷 +33</option>
+                      <option value="+81">🇯🇵 +81</option>
+                      <option value="+86">🇨🇳 +86</option>
+                      <option value="+82">🇰🇷 +82</option>
+                      <option value="+60">🇲🇾 +60</option>
+                      <option value="+66">🇹🇭 +66</option>
+                      <option value="+62">🇮🇩 +62</option>
+                      <option value="+63">🇵🇭 +63</option>
+                    </select>
+                    
+                    {/* Phone Number Input */}
+                    <input
+                      type="tel"
+                      placeholder="Enter 10-digit phone number"
+                      value={leadForm.phone}
+                      onChange={(e) => {
+                        const digitsOnly = e.target.value.replace(/\D/g, '');
+                        setLeadForm(prev => ({ ...prev, phone: digitsOnly }));
+                      }}
+                      className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
                   
                   <div className="flex gap-3 pt-4">
                     <button
@@ -748,6 +897,12 @@ const ChatBot: React.FC = () => {
                       className="flex-1 px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors"
                     >
                       Cancel
+                    </button>
+                    <button
+                      onClick={handleLeadFormSubmit}
+                      className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                    >
+                      Continue
                     </button>
                   </div>
                 </div>
