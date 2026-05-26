@@ -61,14 +61,91 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Submit to Zoho CRM
+      const zohoForm = document.createElement('form');
+      zohoForm.method = 'POST';
+      zohoForm.action = 'https://crm.zoho.in/crm/WebToContactForm';
+      zohoForm.style.display = 'none';
+      
+      // Split name into first and last
+      const nameParts = formData.name.trim().split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || nameParts[0] || '';
+      
+      // Format phone number with country code
+      let fullPhone = '';
+      if (formData.mobile && formData.mobile.trim() !== '') {
+        const phoneDigits = formData.mobile.replace(/\D/g, '');
+        const countryCodeDigits = formData.countryCode.replace(/\D/g, '');
+        fullPhone = `+${countryCodeDigits}${phoneDigits}`;
+      }
+      
+      // Determine lead source based on context
+      let leadSource = 'Website - Lead Capture';
+      if (showStartTimeField) {
+        const startTimeLabels = {
+          'immediately': 'Immediately',
+          'within_1_month': 'Within 1 month',
+          'within_2_4_months': 'Within 2-4 months'
+        };
+        const startTimeLabel = startTimeLabels[formData.startTime as keyof typeof startTimeLabels] || formData.startTime;
+        leadSource = `Website - ${title} - Start: ${startTimeLabel}`;
+      } else {
+        leadSource = `Website - ${title}`;
+      }
+      
+      // Add Zoho form fields
+      const fields = [
+        { name: 'xnQsjsdp', value: '8bbd35515d6a83c052b1e6576c5c88c66e03a2029e7ad697e512874bfe87ca4f' },
+        { name: 'zc_gad', value: '' },
+        { name: 'xmIwtLD', value: '8c45ff248fbf8d61c290ea098f607578e4ce3c83d44ee4b8d32f30b2782d8dd8ee8b3d33e2322c7915dad56c4b5b511d' },
+        { name: 'actionType', value: 'Q29udGFjdHM=' },
+        { name: 'returnURL', value: window.location.href },
+        { name: 'First Name', value: firstName },
+        { name: 'Last Name', value: lastName },
+        { name: 'Phone', value: fullPhone },
+        { name: 'Email', value: formData.email },
+        { name: 'CONTACTCF2', value: 'DBA Support' },
+        { name: 'CONTACTCF1', value: leadSource }
+      ];
+      
+      fields.forEach(field => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = field.name;
+        input.value = field.value;
+        zohoForm.appendChild(input);
+      });
+      
+      // Create hidden iframe for submission
+      const iframe = document.createElement('iframe');
+      iframe.name = 'zoho-submit-iframe-modal';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      
+      zohoForm.target = 'zoho-submit-iframe-modal';
+      document.body.appendChild(zohoForm);
+      
+      // Submit form
+      zohoForm.submit();
+      
+      console.log('Submitted to Zoho:', {
+        firstName,
+        lastName,
+        phone: fullPhone,
+        email: formData.email,
+        source: leadSource
+      });
+      
+      // Clean up after delay
+      setTimeout(() => {
+        if (document.body.contains(zohoForm)) document.body.removeChild(zohoForm);
+        if (document.body.contains(iframe)) document.body.removeChild(iframe);
+      }, 3000);
       
       // Show success
       setIsSubmitted(true);
       setIsSubmitting(false);
-      
-      console.log('Form submitted:', formData);
       
       // Call onSuccess callback if provided (for template download/preview)
       if (onSuccess) {

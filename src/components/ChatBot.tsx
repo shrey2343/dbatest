@@ -426,8 +426,72 @@ const ChatBot: React.FC = () => {
 
     setMessages(prev => [...prev, successMessage]);
 
-    // Log form submission
-    console.log('Form submitted:', leadForm);
+    // Submit to Zoho CRM
+    try {
+      const zohoForm = document.createElement('form');
+      zohoForm.method = 'POST';
+      zohoForm.action = 'https://crm.zoho.in/crm/WebToContactForm';
+      zohoForm.style.display = 'none';
+      
+      // Format phone number with country code
+      let fullPhone = '';
+      if (leadForm.phone && leadForm.phone.trim() !== '') {
+        const phoneDigits = leadForm.phone.replace(/\D/g, '');
+        const countryCodeDigits = leadForm.countryCode.replace(/\D/g, '');
+        fullPhone = `+${countryCodeDigits}${phoneDigits}`;
+      }
+      
+      // Add Zoho form fields
+      const fields = [
+        { name: 'xnQsjsdp', value: '8bbd35515d6a83c052b1e6576c5c88c66e03a2029e7ad697e512874bfe87ca4f' },
+        { name: 'zc_gad', value: '' },
+        { name: 'xmIwtLD', value: '8c45ff248fbf8d61c290ea098f607578e4ce3c83d44ee4b8d32f30b2782d8dd8ee8b3d33e2322c7915dad56c4b5b511d' },
+        { name: 'actionType', value: 'Q29udGFjdHM=' },
+        { name: 'returnURL', value: window.location.href },
+        { name: 'First Name', value: leadForm.firstName },
+        { name: 'Last Name', value: leadForm.lastName || leadForm.firstName },
+        { name: 'Phone', value: fullPhone },
+        { name: 'Email', value: leadForm.email },
+        { name: 'CONTACTCF2', value: leadForm.department || 'DBA Support' },
+        { name: 'CONTACTCF1', value: 'Website - ChatBot' }
+      ];
+      
+      fields.forEach(field => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = field.name;
+        input.value = field.value;
+        zohoForm.appendChild(input);
+      });
+      
+      // Create hidden iframe for submission
+      const iframe = document.createElement('iframe');
+      iframe.name = 'zoho-submit-iframe-chat';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      
+      zohoForm.target = 'zoho-submit-iframe-chat';
+      document.body.appendChild(zohoForm);
+      
+      // Submit form
+      zohoForm.submit();
+      
+      console.log('ChatBot submitted to Zoho:', {
+        firstName: leadForm.firstName,
+        lastName: leadForm.lastName,
+        phone: fullPhone,
+        email: leadForm.email
+      });
+      
+      // Clean up after delay
+      setTimeout(() => {
+        if (document.body.contains(zohoForm)) document.body.removeChild(zohoForm);
+        if (document.body.contains(iframe)) document.body.removeChild(iframe);
+      }, 3000);
+      
+    } catch (error) {
+      console.error('Error submitting to Zoho:', error);
+    }
     
     // Reset form
     setLeadForm({
