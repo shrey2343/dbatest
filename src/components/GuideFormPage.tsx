@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Download, CheckCircle2, Star, Calendar, AlertCircle } from 'lucide-react';
 import StandardHeader from './StandardHeader';
 import PremiumFooter from './PremiumFooter';
-import { submitToHubSpot } from '../utils/hubspot';
 import guideBook from "../assets/guide-book.png";
 
 interface GuideFormPageProps {
@@ -174,55 +173,7 @@ const GuideFormPage: React.FC<GuideFormPageProps> = ({ onBack }) => {
     setIsSubmitting(true);
 
     try {
-      // Format phone number for HubSpot - ensure proper international format
-      let fullPhoneNumber = '';
-      if (formData.phone && formData.phone.trim() !== '') {
-        let phoneDigits = formData.phone.trim();
-        
-        // Remove any non-digit characters from phone input
-        phoneDigits = phoneDigits.replace(/\D/g, '');
-        
-        // Special handling for India: remove leading zero if present
-        if (formData.countryCode === '+91' && phoneDigits.startsWith('0')) {
-          phoneDigits = phoneDigits.substring(1);
-        }
-        
-        // Get country code digits only (remove + sign)
-        const countryCodeDigits = formData.countryCode.replace(/\D/g, '');
-        
-        // Combine: + followed by country code digits and phone digits
-        fullPhoneNumber = `+${countryCodeDigits}${phoneDigits}`;
-      }
-      
-      console.log('=== GuideFormPage Debug ===');
-      console.log({
-        name: formData.name,
-        email: formData.email,
-        phone: fullPhoneNumber,
-        phoneLength: fullPhoneNumber.length,
-        rawCountryCode: formData.countryCode,
-        rawPhone: formData.phone,
-        willSendToHubSpot: fullPhoneNumber !== ''
-      });
-      console.log('===========================');
-      
-      const success = await submitToHubSpot({
-        firstname: formData.name,
-        email: formData.email,
-        phone: fullPhoneNumber,
-        message: `Lead from Guide Form Page - PDF Download Request: 5 Proven Strategies to Fast Track Your DBA Completion\n\nContact Number: ${fullPhoneNumber}\nCountry Code: ${formData.countryCode}\nPhone: ${formData.phone}`
-      }, {
-        pageUri: window.location.href,
-        pageName: 'Guide Form Page - DBA Coach'
-      });
-
-      if (success) {
-        console.log('Lead submitted successfully to HubSpot');
-      } else {
-        console.log('HubSpot submission failed, but continuing with success flow');
-      }
-      
-      // Simulate additional processing time
+      // Simulate form submission
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       console.log('Form submitted:', formData);
@@ -241,7 +192,7 @@ const GuideFormPage: React.FC<GuideFormPageProps> = ({ onBack }) => {
       
     } catch (error) {
       console.error('Error submitting form:', error);
-      // Still show success and download PDF even if HubSpot fails
+      // Still show success and download PDF
       setIsSubmitted(true);
       
       setTimeout(() => {

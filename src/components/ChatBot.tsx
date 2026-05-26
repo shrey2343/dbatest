@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, User, Bot, Phone, Mail, ChevronDown, Star } from 'lucide-react';
-import { submitToHubSpot } from '../utils/hubspot';
 
 interface Message {
   id: string;
@@ -427,58 +426,8 @@ const ChatBot: React.FC = () => {
 
     setMessages(prev => [...prev, successMessage]);
 
-    // Submit to HubSpot using utility function
-    try {
-      // Format phone number for HubSpot - ensure proper international format
-      let fullPhoneNumber = '';
-      if (leadForm.phone && leadForm.phone.trim() !== '') {
-        let phoneDigits = leadForm.phone.trim();
-        
-        // Remove any non-digit characters from phone input
-        phoneDigits = phoneDigits.replace(/\D/g, '');
-        
-        // Special handling for India: remove leading zero if present
-        if (leadForm.countryCode === '+91' && phoneDigits.startsWith('0')) {
-          phoneDigits = phoneDigits.substring(1);
-        }
-        
-        // Get country code digits only (remove + sign)
-        const countryCodeDigits = leadForm.countryCode.replace(/\D/g, '');
-        
-        // Combine: + followed by country code digits and phone digits
-        fullPhoneNumber = `+${countryCodeDigits}${phoneDigits}`;
-      }
-      
-      console.log('=== ChatBot Debug ===');
-      console.log({
-        name: leadForm.firstName,
-        email: leadForm.email,
-        phone: fullPhoneNumber,
-        phoneLength: fullPhoneNumber.length,
-        rawCountryCode: leadForm.countryCode,
-        rawPhone: leadForm.phone,
-        willSendToHubSpot: fullPhoneNumber !== ''
-      });
-      console.log('=====================');
-      
-      const success = await submitToHubSpot({
-        firstname: leadForm.firstName,
-        email: leadForm.email,
-        phone: fullPhoneNumber,
-        message: `Contact request from DBA Dissertation Coach Chatbot - Dr Alex\n\nContact Number: ${fullPhoneNumber}\nCountry Code: ${leadForm.countryCode}\nPhone: ${leadForm.phone}`
-      }, {
-        pageUri: window.location.href,
-        pageName: 'DBA Dissertation Coach Chatbot'
-      });
-      
-      if (success) {
-        console.log('Lead submitted successfully to HubSpot');
-      } else {
-        console.log('HubSpot submission failed, but continuing with success flow');
-      }
-    } catch (error) {
-      console.error('Error submitting lead:', error);
-    }
+    // Log form submission
+    console.log('Form submitted:', leadForm);
     
     // Reset form
     setLeadForm({

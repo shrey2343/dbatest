@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { X, User, Mail, Phone, Loader2 } from 'lucide-react';
-import { submitToHubSpot } from '../utils/hubspot';
 
 interface LeadCaptureModalProps {
   isOpen: boolean;
@@ -62,65 +61,14 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
     setIsSubmitting(true);
 
     try {
-      // Submit to HubSpot using utility function
-      let message = `Lead from ${title}`;
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
-      if (showStartTimeField) {
-        const startTimeLabels = {
-          'immediately': 'Immediately',
-          'within_1_month': 'Within 1 month',
-          'within_2_4_months': 'Within 2-4 months'
-        };
-        const startTimeLabel = startTimeLabels[formData.startTime as keyof typeof startTimeLabels] || formData.startTime;
-        message += ` - Start Time: ${startTimeLabel}`;
-      } else {
-        message += ' - PDF Download Request';
-      }
-      
-      // Format phone number for HubSpot - MUST include country code
-      let fullPhoneNumber = '';
-      if (formData.mobile && formData.mobile.trim() !== '') {
-        let phoneDigits = formData.mobile.trim();
-        
-        // Special handling for India: remove leading zero if present
-        if (formData.countryCode === '+91' && phoneDigits.startsWith('0')) {
-          phoneDigits = phoneDigits.substring(1);
-        }
-        
-        // Combine country code with phone number
-        fullPhoneNumber = `${formData.countryCode}${phoneDigits}`;
-      }
-      
-      console.log('=== LeadCaptureModal Debug ===');
-      console.log({
-        name: formData.name,
-        email: formData.email,
-        phone: fullPhoneNumber,
-        rawCountryCode: formData.countryCode,
-        rawPhone: formData.mobile,
-        hasPhone: formData.mobile && formData.mobile.trim() !== ''
-      });
-      console.log('==============================');
-        
-      const success = await submitToHubSpot({
-        firstname: formData.name,
-        email: formData.email,
-        phone: fullPhoneNumber,
-        message: message
-      }, {
-        pageUri: window.location.href,
-        pageName: title
-      });
-
-      // Always show success regardless of HubSpot response
+      // Show success
       setIsSubmitted(true);
       setIsSubmitting(false);
       
-      if (success) {
-        console.log('HubSpot submission successful');
-      } else {
-        console.log('HubSpot submission failed, but continuing with success flow');
-      }
+      console.log('Form submitted:', formData);
       
       // Call onSuccess callback if provided (for template download/preview)
       if (onSuccess) {
@@ -140,7 +88,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
       }
 
     } catch (error) {
-      console.error('Error submitting to HubSpot:', error);
+      console.error('Error submitting form:', error);
       setIsSubmitting(false);
       // Always show success
       setIsSubmitted(true);

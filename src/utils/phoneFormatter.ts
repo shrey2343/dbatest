@@ -1,10 +1,10 @@
 /**
- * Phone number formatting utility for HubSpot integration
+ * Phone number formatting utility for CRM integration
  * Handles international phone numbers with proper normalization
  */
 
 /**
- * Cleans and formats phone number for HubSpot
+ * Cleans and formats phone number for CRM systems
  * @param countryCode - Country code with + (e.g., "+91", "+1")
  * @param phone - Phone number (digits only)
  * @returns Formatted phone number (e.g., "+919876543210")
