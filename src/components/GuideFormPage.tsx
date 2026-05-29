@@ -173,17 +173,11 @@ const GuideFormPage: React.FC<GuideFormPageProps> = ({ onBack }) => {
     setIsSubmitting(true);
 
     try {
-      // Submit to Zoho CRM
-      const zohoForm = document.createElement('form');
-      zohoForm.method = 'POST';
-      zohoForm.action = 'https://crm.zoho.in/crm/WebToContactForm';
-      zohoForm.style.display = 'none';
-      
       // Split name into first and last
       const nameParts = formData.name.trim().split(' ');
       const firstName = nameParts[0] || '';
       const lastName = nameParts.slice(1).join(' ') || nameParts[0] || '';
-      
+
       // Format phone number with country code
       let fullPhone = '';
       if (formData.phone && formData.phone.trim() !== '') {
@@ -191,55 +185,38 @@ const GuideFormPage: React.FC<GuideFormPageProps> = ({ onBack }) => {
         const countryCodeDigits = formData.countryCode.replace(/\D/g, '');
         fullPhone = `+${countryCodeDigits}${phoneDigits}`;
       }
-      
-      // Add Zoho form fields
-      const fields = [
-        { name: 'xnQsjsdp', value: '8bbd35515d6a83c052b1e6576c5c88c66e03a2029e7ad697e512874bfe87ca4f' },
-        { name: 'zc_gad', value: '' },
-        { name: 'xmIwtLD', value: '8c45ff248fbf8d61c290ea098f607578e4ce3c83d44ee4b8d32f30b2782d8dd8ee8b3d33e2322c7915dad56c4b5b511d' },
-        { name: 'actionType', value: 'Q29udGFjdHM=' },
-        { name: 'returnURL', value: window.location.href },
-        { name: 'First Name', value: firstName },
-        { name: 'Last Name', value: lastName },
-        { name: 'Email', value: formData.email },
-        { name: 'Phone', value: fullPhone },
-        { name: 'CONTACTCF2', value: 'DBA Support' },
-        { name: 'CONTACTCF1', value: 'Website - Guide Download' }
-      ];
-      
-      fields.forEach(field => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = field.name;
-        input.value = field.value;
-        zohoForm.appendChild(input);
+
+      // Submit to Zoho CRM via URLSearchParams (application/x-www-form-urlencoded)
+      // Using fetch with no-cors so browser sends it without blocking
+      const zohoData = new URLSearchParams();
+      zohoData.append('xnQsjsdp', '8bbd35515d6a83c052b1e6576c5c88c66e03a2029e7ad697e512874bfe87ca4f');
+      zohoData.append('zc_gad', '');
+      zohoData.append('xmIwtLD', '8c45ff248fbf8d61c290ea098f607578e4ce3c83d44ee4b8d32f30b2782d8dd8ee8b3d33e2322c7915dad56c4b5b511d');
+      zohoData.append('actionType', 'Q29udGFjdHM=');
+      zohoData.append('returnURL', 'https://www.dbacoach.in');
+      zohoData.append('First Name', firstName);
+      zohoData.append('Last Name', lastName);
+      zohoData.append('Email', formData.email);
+      zohoData.append('Phone', fullPhone);
+      zohoData.append('CONTACTCF2', 'DBA Support');
+      zohoData.append('CONTACTCF1', 'Website - Guide Download');
+
+      fetch('https://crm.zoho.in/crm/WebToContactForm', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: zohoData.toString()
+      }).catch(() => {
+        // no-cors fetch always throws on response read — submission still goes through
       });
-      
-      // Create hidden iframe for submission
-      const iframe = document.createElement('iframe');
-      iframe.name = 'zoho-submit-iframe';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-      
-      zohoForm.target = 'zoho-submit-iframe';
-      document.body.appendChild(zohoForm);
-      
-      // Submit form
-      zohoForm.submit();
-      
+
       console.log('Submitted to Zoho:', {
         firstName,
         lastName,
         phone: fullPhone,
         email: formData.email
       });
-      
-      // Clean up after delay
-      setTimeout(() => {
-        document.body.removeChild(zohoForm);
-        document.body.removeChild(iframe);
-      }, 3000);
-      
+
       // Show success
       await new Promise(resolve => setTimeout(resolve, 1000));
       setIsSubmitted(true);
