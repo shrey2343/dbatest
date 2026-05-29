@@ -91,6 +91,16 @@ const ZohoCRMForm: React.FC = () => {
             
             <div class='zcwf_row'>
               <div class='zcwf_col_lab' style='font-size:12px; font-family: Arial;'>
+                <label for='Email'>Email <span style='color:red;'>*</span></label>
+              </div>
+              <div class='zcwf_col_fld'>
+                <input type='text' id='Email' aria-required='true' aria-label='Email' name='Email' aria-valuemax='100' maxlength='100'></input>
+                <div class='zcwf_col_help'></div>
+              </div>
+            </div>
+            
+            <div class='zcwf_row'>
+              <div class='zcwf_col_lab' style='font-size:12px; font-family: Arial;'>
                 <label for='CONTACTCF2'>Business Line <span style='color:red;'>*</span></label>
               </div>
               <div class='zcwf_col_fld'>
@@ -140,8 +150,8 @@ const ZohoCRMForm: React.FC = () => {
         }
         
         function checkMandatory1324452000000527085(){
-          var mndFileds = new Array('First Name', 'Last Name', 'Phone', 'CONTACTCF2');
-          var fldLangVal = new Array('First\\x20Name', 'Last\\x20Name', 'WhatsApp\\x20Number', 'Business\\x20Line');
+          var mndFileds = new Array('First Name', 'Last Name', 'Phone', 'Email', 'CONTACTCF2');
+          var fldLangVal = new Array('First\\x20Name', 'Last\\x20Name', 'WhatsApp\\x20Number', 'Email', 'Business\\x20Line');
           for (i = 0; i < mndFileds.length; i++) {
             var fieldObj = document.forms['WebToContacts1324452000000527085'][mndFileds[i]];
             if (fieldObj) {

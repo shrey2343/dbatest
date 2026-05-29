@@ -201,6 +201,7 @@ const GuideFormPage: React.FC<GuideFormPageProps> = ({ onBack }) => {
         { name: 'returnURL', value: window.location.href },
         { name: 'First Name', value: firstName },
         { name: 'Last Name', value: lastName },
+        { name: 'Email', value: formData.email },
         { name: 'Phone', value: fullPhone },
         { name: 'CONTACTCF2', value: 'DBA Support' },
         { name: 'CONTACTCF1', value: 'Website - Guide Download' }
